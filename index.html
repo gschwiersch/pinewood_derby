@@ -15,8 +15,8 @@
             --text: #f8fafc;
             --text-muted: #94a3b8;
             --border: #334155;
-            /* Harmonized Class Group Header Color */
             --group-header-color: #fca5a5; 
+            --semi-header-color: #38bdf8;
         }
 
         body {
@@ -29,24 +29,46 @@
 
         header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         h1 { margin: 0; color: #38bdf8; font-size: 2.5rem; }
 
-        .card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
-            max-width: 600px;
+        .setup-container {
+            max-width: 900px;
             margin: 0 auto 2rem auto;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .class-input-box {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
             border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+        }
+
+        .class-input-box h3 {
+            margin-top: 0;
+            margin-bottom: 0.25rem;
+            color: #38bdf8;
+        }
+
+        .class-input-box p {
+            margin: 0 0 0.75rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         textarea {
             width: 100%;
-            height: 180px;
+            height: 220px;
             padding: 0.75rem;
             background: #0f172a;
             color: var(--text);
@@ -54,7 +76,27 @@
             border-radius: 8px;
             font-family: monospace;
             box-sizing: border-box;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
+            resize: none;
+        }
+
+        .counter-status {
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .status-valid { color: #4ade80; }
+        .status-invalid { color: #f87171; }
+
+        .setup-actions {
+            background: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            align-items: center;
         }
 
         button {
@@ -70,40 +112,47 @@
         }
         button:hover { background-color: var(--primary-hover); }
 
-        /* Bracket Layout Structure */
+        /* Screenshot Top Control Area wrapper */
+        .utility-header-container {
+            grid-column: 1 / span 5;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Seamless 5-Column True Grid Layout */
         .bracket-container {
             display: grid;
-            grid-template-columns: 310px 1fr 310px;
-            gap: 2rem;
-            align-items: start;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 1rem; /* Added for screenshot padding */
-        }
-
-        .side-column {
-            display: flex;
-            flex-direction: column;
+            grid-template-columns: repeat(5, 275px);
             gap: 1.25rem;
+            align-items: start;
+            justify-content: center;
+            max-width: 1550px;
+            margin: 0 auto;
+            padding: 1rem;
         }
 
-        .center-column {
+        .bracket-column {
             display: flex;
             flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Center Column precise layout tweaks */
+        .center-column {
             gap: 2rem;
-            align-items: center;
             justify-content: center;
-            min-height: 500px;
+            align-items: stretch;
         }
 
         .round-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: #38bdf8;
             text-align: center;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             border-bottom: 2px solid var(--border);
             padding-bottom: 0.25rem;
             white-space: nowrap;
@@ -113,14 +162,22 @@
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 0.85rem;
+            padding: 0.75rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .semi-card {
+            border-color: #0284c7;
+        }
+
+        .finals-card {
+            border-color: #eab308;
+            border-width: 1.5px;
         }
 
         .group-header {
             font-size: 0.95rem;
             font-weight: bold;
-            /* Harmonized color applied to both sides via var */
             color: var(--group-header-color); 
             margin-bottom: 0.5rem;
         }
@@ -129,7 +186,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.4rem 0;
+            padding: 0.35rem 0;
             border-bottom: 1px dashed #334155;
             gap: 0.5rem;
         }
@@ -137,8 +194,8 @@
 
         .racer-name {
             font-weight: 500;
-            font-size: 0.9rem;
-            max-width: 160px;
+            font-size: 0.85rem;
+            max-width: 130px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -147,12 +204,12 @@
         .win-btn {
             background: #334155;
             color: var(--text);
-            padding: 0.25rem 0.5rem;
+            padding: 0.2rem 0.4rem;
             font-size: 0.75rem;
             border-radius: 4px;
             border: 1px solid var(--border);
             font-weight: normal;
-            min-width: 70px;
+            min-width: 65px;
             text-align: center;
         }
         .win-btn:hover { background: #475569; }
@@ -164,35 +221,34 @@
             font-weight: bold;
         }
 
-        .center-box {
-            width: 100%;
-            max-width: 340px;
+        .placeholder-notice {
+            color: var(--text-muted);
+            font-style: italic;
+            text-align: center;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            padding: 2.5rem 1rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
         }
 
         .champion-card {
             background: #854d0e;
             border: 2px dashed #eab308;
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: 12px;
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: bold;
-            width: 100%;
-            max-width: 400px;
-            box-sizing: border-box;
+            margin-top: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
         }
 
         .screenshot-btn {
-            background-color: #64748b; /* Slate color to distinguish from action buttons */
-            margin-bottom: 1rem;
+            background-color: #64748b; 
         }
         .screenshot-btn:hover { background-color: #475569; }
-
-        .flex-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
     </style>
 </head>
 <body>
@@ -202,14 +258,26 @@
         <h1>Pinewood Derby 2026</h1>
     </header>
 
-    <div id="setup-card" class="card">
-        <h3>Enter 48 Racer Names (One per line)</h3>
-        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: -0.5rem;">The first 24 will go to Ms. Badescu's class, the last 24 to Ms. Schwiersch's class.</p>
-        <textarea id="names-input" placeholder="Racer 1&#10;Racer 2&#10;..."></textarea>
-        <div class="flex-actions">
+    <div id="setup-area" class="setup-container">
+        <div class="input-grid">
+            <div class="class-input-box">
+                <h3>Teacher A's Class</h3>
+                <p>Enter 24 names (One per line)</p>
+                <textarea id="teacher_a-input" placeholder="Racer 1&#10;Racer 2&#10;..."></textarea>
+                <div id="teacher_a-counter" class="counter-status status-invalid">0 / 24 names entered</div>
+            </div>
+
+            <div class="class-input-box">
+                <h3>Teacher B's Class</h3>
+                <p>Enter 24 names (One per line)</p>
+                <textarea id="teacher_b-input" placeholder="Racer 1&#10;Racer 2&#10;..."></textarea>
+                <div id="teacher_b-counter" class="counter-status status-invalid">0 / 24 names entered</div>
+            </div>
+        </div>
+
+        <div class="setup-actions">
             <button onclick="generateTournament()">Generate Bracket</button>
-            <button onclick="loadDemoData()" style="background-color: #475569;">Load 48 Demo Names</button>
-            <span id="counter" style="color: var(--text-muted);">0 / 48 names</span>
+            <button onclick="loadDemoData()" style="background-color: #475569;">Load Demo Rosters</button>
         </div>
     </div>
 
@@ -217,44 +285,67 @@
         </div>
 </div>
 
-<script>
+<script {timestamp="2026"}>
     let tournament = {
         leftWing: [],    
         rightWing: [],   
-        winnersLeft: Array(6).fill(null),
-        winnersRight: Array(6).fill(null),
-        semifinals: [],  
-        semiWinners: Array(3).fill(null),
+        winnersLeft: Array(8).fill(null),  
+        winnersRight: Array(8).fill(null), 
+        semifinals: [],                    
+        semiWinners: Array(4).fill(null),  
         grandFinals: [], 
         champion: null
     };
 
-    document.getElementById('names-input').addEventListener('input', (e) => {
-        const lines = e.target.value.split('\n').map(l => l.trim()).filter(l => l !== '');
-        document.getElementById('counter').innerText = `${lines.length} / 48 names`;
+    function updateCounter(textareaId, counterId) {
+        const text = document.getElementById(textareaId).value;
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l !== '');
+        const count = lines.length;
+        const counterElem = document.getElementById(counterId);
+        
+        counterElem.innerText = `${count} / 24 names entered`;
+        if (count === 24) {
+            counterElem.className = "counter-status status-valid";
+        } else {
+            counterElem.className = "counter-status status-invalid";
+        }
+    }
+
+    document.getElementById('teacher_a-input').addEventListener('input', () => {
+        updateCounter('teacher_a-input', 'teacher_a-counter');
+    });
+
+    document.getElementById('teacher_b-input').addEventListener('input', () => {
+        updateCounter('teacher_b-input', 'teacher_b-counter');
     });
 
     function loadDemoData() {
-        const demo = [
-            ...Array.from({length: 24}, (_, i) => `Badescu_Racer_${i + 1}`),
-            ...Array.from({length: 24}, (_, i) => `Schwiersch_Racer_${i + 1}`)
-        ];
-        document.getElementById('names-input').value = demo.join('\n');
-        document.getElementById('counter').innerText = "48 / 48 names";
+        const teacher_aDemo = Array.from({length: 24}, (_, i) => `A_Racer_${i + 1}`);
+        const teacher_bDemo = Array.from({length: 24}, (_, i) => `B_Racer_${i + 1}`);
+        
+        document.getElementById('teacher_a-input').value = teacher_aDemo.join('\n');
+        document.getElementById('teacher_b-input').value = teacher_bDemo.join('\n');
+        
+        updateCounter('teacher_a-input', 'teacher_a-counter');
+        updateCounter('teacher_b-input', 'teacher_b-counter');
     }
 
     function generateTournament() {
-        const input = document.getElementById('names-input').value;
-        let names = input.split('\n').map(l => l.trim()).filter(l => l !== '');
+        const teacher_aRaw = document.getElementById('teacher_a-input').value;
+        const teacher_bRaw = document.getElementById('teacher_b-input').value;
 
-        if (names.length !== 48) {
-            alert(`You must enter exactly 48 names. You currently have ${names.length}.`);
+        let teacher_aNames = teacher_aRaw.split('\n').map(l => l.trim()).filter(l => l !== '');
+        let teacher_bNames = teacher_bRaw.split('\n').map(l => l.trim()).filter(l => l !== '');
+
+        if (teacher_aNames.length !== 24 || teacher_bNames.length !== 24) {
+            alert(`Each class must have exactly 24 names.\n\nTeacher A's Class: ${teacher_aNames.length}\nTeacher B's Class: ${teacher_bNames.length}`);
             return;
         }
 
+        // Reset Bracket State
         tournament.winnersLeft.fill(null);
         tournament.winnersRight.fill(null);
-        tournament.semiWinners = Array(3).fill(null);
+        tournament.semiWinners = Array(4).fill(null);
         tournament.semifinals = [];
         tournament.grandFinals = [];
         tournament.champion = null;
@@ -262,12 +353,13 @@
         tournament.leftWing = [];
         tournament.rightWing = [];
         
-        for(let i = 0; i < 6; i++) {
-            tournament.leftWing.push(names.slice(i * 4, (i * 4) + 4));
-            tournament.rightWing.push(names.slice(24 + (i * 4), 24 + (i * 4) + 4));
+        // Chunk rosters into 8 groups of 3
+        for(let i = 0; i < 8; i++) {
+            tournament.leftWing.push(teacher_aNames.slice(i * 3, (i * 3) + 3));
+            tournament.rightWing.push(teacher_bNames.slice(i * 3, (i * 3) + 3));
         }
 
-        document.getElementById('setup-card').style.display = 'none';
+        document.getElementById('setup-area').style.display = 'none';
         document.getElementById('bracket-area').style.display = 'grid';
         render();
     }
@@ -291,10 +383,10 @@
     function checkAndBuildSemifinals() {
         if (tournament.winnersLeft.every(w => w !== null) && tournament.winnersRight.every(w => w !== null)) {
             if (tournament.semifinals.length === 0) {
-                const total12Winners = [...tournament.winnersLeft, ...tournament.winnersRight];
+                const total16Winners = [...tournament.winnersLeft, ...tournament.winnersRight];
                 tournament.semifinals = [];
-                for (let i = 0; i < 3; i++) {
-                    tournament.semifinals.push(total12Winners.slice(i * 4, (i * 4) + 4));
+                for (let i = 0; i < 4; i++) {
+                    tournament.semifinals.push(total16Winners.slice(i * 4, (i * 4) + 4));
                 }
             }
         }
@@ -306,24 +398,20 @@
         }
     }
 
-    // Screenshot Functionality
     function takeScreenshot() {
         const bracketArea = document.getElementById('bracket-area');
         const btn = document.getElementById('screenshot-btn-element');
         
-        // Hide button temporarily so it doesn't appear in the shot
         if (btn) btn.style.visibility = 'hidden';
 
         html2canvas(bracketArea, {
-            backgroundColor: '#0f172a', // Body background color
-            scale: 2, // Higher quality
+            backgroundColor: '#0f172a',
+            scale: 2,
             logging: false,
-            useCORS: true // In case of external images, though none here
+            useCORS: true
         }).then(canvas => {
-            // Restore button
             if (btn) btn.style.visibility = 'visible';
 
-            // Create a download link
             const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
             const link = document.createElement('a');
             link.download = 'pinewood-derby-bracket.png';
@@ -336,14 +424,27 @@
         const container = document.getElementById('bracket-area');
         container.innerHTML = '';
 
-        // 1. MS. BADESCU'S CLASS COLUMN (Groups B1-B6)
-        const leftCol = document.createElement('div');
-        leftCol.className = 'side-column left-side';
-        leftCol.innerHTML = '<div class="round-title">Ms. Badescu\'s class</div>';
+        // SPAN ROW: SCREENSHOT BUTTON
+        const fullSpanRow = document.createElement('div');
+        fullSpanRow.className = 'utility-header-container';
+        if (tournament.semifinals.length > 0) {
+            fullSpanRow.innerHTML = `
+                <button id="screenshot-btn-element" class="screenshot-btn" onclick="takeScreenshot()">
+                    📸 Download Bracket Screenshot
+                </button>
+            `;
+        }
+        container.appendChild(fullSpanRow);
+
+
+        // COLUMN 1: TEACHER A'S INITIAL HEATS (Groups A1-A8)
+        const col1 = document.createElement('div');
+        col1.className = 'bracket-column';
+        col1.innerHTML = '<div class="round-title">Teacher A\'s Class</div>';
         tournament.leftWing.forEach((group, gIdx) => {
-            leftCol.innerHTML += `
+            col1.innerHTML += `
                 <div class="group-card">
-                    <div class="group-header">Group B${gIdx + 1}</div>
+                    <div class="group-header">Group A${gIdx + 1}</div>
                     ${group.map(racer => `
                         <div class="racer-row">
                             <span class="racer-name" title="${racer}">${racer}</span>
@@ -357,23 +458,18 @@
             `;
         });
 
-        // 2. CENTER STAGE COLUMN
-        const centerCol = document.createElement('div');
-        centerCol.className = 'center-column';
 
+        // COLUMN 2: INNER LEFT (Quarterfinals A)
+        const col2 = document.createElement('div');
+        col2.className = 'bracket-column';
+        col2.innerHTML = '<div class="round-title">Quarterfinals A</div>';
+        
         if (tournament.semifinals.length > 0) {
-            // Add Screenshot button here
-            centerCol.innerHTML += `
-                <button id="screenshot-btn-element" class="screenshot-btn" onclick="takeScreenshot()">
-                    📸 Download Bracket Screenshot
-                </button>
-            `;
-
-            let semiHTML = `<div class="center-box"><div class="round-title">⚡ Semifinals</div>`;
-            tournament.semifinals.forEach((group, gIdx) => {
-                semiHTML += `
-                    <div class="group-card" style="margin-bottom: 1rem;">
-                        <div class="group-header">Semi Group ${gIdx + 1}</div>
+            [0, 1].forEach(gIdx => {
+                const group = tournament.semifinals[gIdx];
+                col2.innerHTML += `
+                    <div class="group-card semi-card" style="margin-top: 5rem;">
+                        <div class="group-header" style="color: var(--semi-header-color);">Quarter Group A${gIdx + 1}</div>
                         ${group.map(racer => `
                             <div class="racer-row">
                                 <span class="racer-name" title="${racer}">${racer}</span>
@@ -386,52 +482,82 @@
                     </div>
                 `;
             });
-            semiHTML += `</div>`;
-            centerCol.innerHTML += semiHTML;
         } else {
-            centerCol.innerHTML += `<div style="color: var(--text-muted); font-style: italic; text-align:center; max-width: 280px; line-height: 1.4;">
-                Select all group winners to reveal the Semifinals.
-            </div>`;
+            col2.innerHTML += `<div class="placeholder-notice" style="margin-top: 5rem;">Complete initial heats to view Quarterfinals A.</div>`;
         }
 
+
+        // COLUMN 3: ABSOLUTE CENTER (Semifinals Final 4 & Champion)
+        const col3 = document.createElement('div');
+        col3.className = 'bracket-column center-column';
+        col3.innerHTML = '<div class="round-title">Semifinals</div>';
+
         if (tournament.grandFinals.length > 0) {
-            centerCol.innerHTML += `
-                <div class="center-box">
-                    <div class="round-title">🔥 Grand Finals</div>
-                    <div class="group-card" style="border-color: #eab308;">
-                        <div class="group-header" style="color: #eab308;">Ultimate 3-Way Shootout</div>
-                        ${tournament.grandFinals[0].map(racer => `
+            col3.innerHTML += `
+                <div class="group-card finals-card" style="margin-top: 10rem;">
+                    <div class="group-header" style="color: #eab308; text-align: center;">Ultimate 4-Way Semifinal</div>
+                    ${tournament.grandFinals[0].map(racer => `
+                        <div class="racer-row">
+                            <span class="racer-name" title="${racer}">${racer}</span>
+                            <button class="win-btn ${tournament.champion === racer ? 'winner-picked' : ''}" 
+                                onclick="pickWinner('GF', 0, '${racer}')">
+                                ${tournament.champion === racer ? '👑 Champion' : '&nbsp;'}
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            if (tournament.champion) {
+                col3.innerHTML += `
+                    <div class="champion-card">
+                        🏆 CHAMPION 🏆
+                        <div style="font-size: 1.4rem; color: #fef08a; margin: 0.5rem 0; word-break: break-all;">${tournament.champion}</div>
+                        <button onclick="resetApp()" style="background-color: var(--success); font-size: 0.8rem; padding: 0.4rem 0.8rem;">New Tournament</button>
+                    </div>
+                `;
+            }
+        } else {
+            col3.innerHTML += `<div class="placeholder-notice" style="margin-top: 10rem;">Advance all 4 Quarterfinal winners to unlock the Semifinals.</div>`;
+        }
+
+
+        // COLUMN 4: INNER RIGHT (Quarterfinals B)
+        const col4 = document.createElement('div');
+        col4.className = 'bracket-column';
+        col4.innerHTML = '<div class="round-title">Quarterfinals B</div>';
+        
+        if (tournament.semifinals.length > 0) {
+            [2, 3].forEach((gIdx, index) => {
+                const group = tournament.semifinals[gIdx];
+                col4.innerHTML += `
+                    <div class="group-card semi-card" style="margin-top: 5rem;">
+                        <div class="group-header" style="color: var(--semi-header-color);">Quarter Group B${index + 1}</div>
+                        ${group.map(racer => `
                             <div class="racer-row">
                                 <span class="racer-name" title="${racer}">${racer}</span>
-                                <button class="win-btn ${tournament.champion === racer ? 'winner-picked' : ''}" 
-                                    onclick="pickWinner('GF', 0, '${racer}')">
-                                    ${tournament.champion === racer ? '👑 Champion' : '&nbsp;'}
+                                <button class="win-btn ${tournament.semiWinners[gIdx] === racer ? 'winner-picked' : ''}" 
+                                    onclick="pickWinner('SF', ${gIdx}, '${racer}')">
+                                    ${tournament.semiWinners[gIdx] === racer ? 'Winner ✓' : '&nbsp;'}
                                 </button>
                             </div>
                         `).join('')}
                     </div>
-                </div>
-            `;
+                `;
+            });
+        } else {
+            col4.innerHTML += `<div class="placeholder-notice" style="margin-top: 5rem;">Complete initial heats to view Quarterfinals B.</div>`;
         }
 
-        if (tournament.champion) {
-            centerCol.innerHTML += `
-                <div class="champion-card">
-                    🏆 CHAMPION 🏆
-                    <div style="font-size: 1.6rem; color: #fef08a; margin: 0.5rem 0;">${tournament.champion}</div>
-                    <button onclick="resetApp()" style="background-color: var(--success); font-size: 0.85rem; padding: 0.5rem 1rem;">New Tournament</button>
-                </div>
-            `;
-        }
 
-        // 3. MS. SCHWIERSCH'S CLASS COLUMN (Groups S1-S6)
-        const rightCol = document.createElement('div');
-        rightCol.className = 'side-column right-side';
-        rightCol.innerHTML = '<div class="round-title">Ms. Schwiersch\'s class</div>';
+        // COLUMN 5: TEACHER B'S INITIAL HEATS (Groups B1-B8)
+        const col5 = document.createElement('div');
+        col5.className = 'bracket-column';
+        col5.innerHTML = '<div class="round-title">Teacher B\'s Class</div>';
         tournament.rightWing.forEach((group, gIdx) => {
-            rightCol.innerHTML += `
+            col5.innerHTML += `
                 <div class="group-card">
-                    <div class="group-header">Group S${gIdx + 1}</div>
+                    <div class="group-header">Group B${gIdx + 1}</div>
                     ${group.map(racer => `
                         <div class="racer-row">
                             <span class="racer-name" title="${racer}">${racer}</span>
@@ -445,16 +571,21 @@
             `;
         });
 
-        container.appendChild(leftCol);
-        container.appendChild(centerCol);
-        container.appendChild(rightCol);
+        // Append columns to the grid container seamlessly
+        container.appendChild(col1);
+        container.appendChild(col2);
+        container.appendChild(col3);
+        container.appendChild(col4);
+        container.appendChild(col5);
     }
 
     function resetApp() {
-        document.getElementById('setup-card').style.display = 'block';
+        document.getElementById('setup-area').style.display = 'block';
         document.getElementById('bracket-area').style.display = 'none';
-        document.getElementById('names-input').value = '';
-        document.getElementById('counter').innerText = "0 / 48 names";
+        document.getElementById('teacher_a-input').value = '';
+        document.getElementById('teacher_b-input').value = '';
+        updateCounter('teacher_a-input', 'teacher_a-counter');
+        updateCounter('teacher_b-input', 'teacher_b-counter');
     }
 </script>
 </body>
