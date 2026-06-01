@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinewood Derby 2026</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --success: #16a34a;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            /* Harmonized Class Group Header Color */
+            --group-header-color: #fca5a5; 
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 1.5rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 { margin: 0; color: #38bdf8; font-size: 2.5rem; }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            border: 1px solid var(--border);
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 0.75rem;
+            background: #0f172a;
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: monospace;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover { background-color: var(--primary-hover); }
+
+        /* Bracket Layout Structure */
+        .bracket-container {
+            display: grid;
+            grid-template-columns: 310px 1fr 310px;
+            gap: 2rem;
+            align-items: start;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 1rem; /* Added for screenshot padding */
+        }
+
+        .side-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .center-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+
+        .round-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 0.25rem;
+            white-space: nowrap;
+        }
+
+        .group-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        .group-header {
+            font-size: 0.95rem;
+            font-weight: bold;
+            /* Harmonized color applied to both sides via var */
+            color: var(--group-header-color); 
+            margin-bottom: 0.5rem;
+        }
+
+        .racer-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #334155;
+            gap: 0.5rem;
+        }
+        .racer-row:last-child { border-bottom: none; }
+
+        .racer-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            max-width: 160px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .win-btn {
+            background: #334155;
+            color: var(--text);
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            font-weight: normal;
+            min-width: 70px;
+            text-align: center;
+        }
+        .win-btn:hover { background: #475569; }
+
+        .winner-picked {
+            background-color: #14532d !important;
+            border-color: #22c55e !important;
+            color: #bbf7d0 !important;
+            font-weight: bold;
+        }
+
+        .center-box {
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .champion-card {
+            background: #854d0e;
+            border: 2px dashed #eab308;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        .screenshot-btn {
+            background-color: #64748b; /* Slate color to distinguish from action buttons */
+            margin-bottom: 1rem;
+        }
+        .screenshot-btn:hover { background-color: #475569; }
+
+        .flex-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <header>
+        <h1>Pinewood Derby 2026</h1>
+    </header>
+
+    <div id="setup-card" class="card">
+        <h3>Enter 48 Racer Names (One per line)</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: -0.5rem;">The first 24 will go to Ms. Badescu's class, the last 24 to Ms. Schwiersch's class.</p>
+        <textarea id="names-input" placeholder="Racer 1&#10;Racer 2&#10;..."></textarea>
+        <div class="flex-actions">
+            <button onclick="generateTournament()">Generate Bracket</button>
+            <button onclick="loadDemoData()" style="background-color: #475569;">Load 48 Demo Names</button>
+            <span id="counter" style="color: var(--text-muted);">0 / 48 names</span>
+        </div>
+    </div>
+
+    <div id="bracket-area" class="bracket-container" style="display: none;">
+        </div>
+</div>
+
+<script>
+    let tournament = {
+        leftWing: [],    
+        rightWing: [],   
+        winnersLeft: Array(6).fill(null),
+        winnersRight: Array(6).fill(null),
+        semifinals: [],  
+        semiWinners: Array(3).fill(null),
+        grandFinals: [], 
+        champion: null
+    };
+
+    document.getElementById('names-input').addEventListener('input', (e) => {
+        const lines = e.target.value.split('\n').map(l => l.trim()).filter(l => l !== '');
+        document.getElementById('counter').innerText = `${lines.length} / 48 names`;
+    });
+
+    function loadDemoData() {
+        const demo = [
+            ...Array.from({length: 24}, (_, i) => `Badescu_Racer_${i + 1}`),
+            ...Array.from({length: 24}, (_, i) => `Schwiersch_Racer_${i + 1}`)
+        ];
+        document.getElementById('names-input').value = demo.join('\n');
+        document.getElementById('counter').innerText = "48 / 48 names";
+    }
+
+    function generateTournament() {
+        const input = document.getElementById('names-input').value;
+        let names = input.split('\n').map(l => l.trim()).filter(l => l !== '');
+
+        if (names.length !== 48) {
+            alert(`You must enter exactly 48 names. You currently have ${names.length}.`);
+            return;
+        }
+
+        tournament.winnersLeft.fill(null);
+        tournament.winnersRight.fill(null);
+        tournament.semiWinners = Array(3).fill(null);
+        tournament.semifinals = [];
+        tournament.grandFinals = [];
+        tournament.champion = null;
+
+        tournament.leftWing = [];
+        tournament.rightWing = [];
+        
+        for(let i = 0; i < 6; i++) {
+            tournament.leftWing.push(names.slice(i * 4, (i * 4) + 4));
+            tournament.rightWing.push(names.slice(24 + (i * 4), 24 + (i * 4) + 4));
+        }
+
+        document.getElementById('setup-card').style.display = 'none';
+        document.getElementById('bracket-area').style.display = 'grid';
+        render();
+    }
+
+    function pickWinner(side, groupIdx, racerName) {
+        if (side === 'L') {
+            tournament.winnersLeft[groupIdx] = racerName;
+            checkAndBuildSemifinals();
+        } else if (side === 'R') {
+            tournament.winnersRight[groupIdx] = racerName;
+            checkAndBuildSemifinals();
+        } else if (side === 'SF') {
+            tournament.semiWinners[groupIdx] = racerName;
+            checkAndBuildGrandFinals();
+        } else if (side === 'GF') {
+            tournament.champion = racerName;
+        }
+        render();
+    }
+
+    function checkAndBuildSemifinals() {
+        if (tournament.winnersLeft.every(w => w !== null) && tournament.winnersRight.every(w => w !== null)) {
+            if (tournament.semifinals.length === 0) {
+                const total12Winners = [...tournament.winnersLeft, ...tournament.winnersRight];
+                tournament.semifinals = [];
+                for (let i = 0; i < 3; i++) {
+                    tournament.semifinals.push(total12Winners.slice(i * 4, (i * 4) + 4));
+                }
+            }
+        }
+    }
+
+    function checkAndBuildGrandFinals() {
+        if (tournament.semiWinners.every(w => w !== null)) {
+            tournament.grandFinals = [[...tournament.semiWinners]];
+        }
+    }
+
+    // Screenshot Functionality
+    function takeScreenshot() {
+        const bracketArea = document.getElementById('bracket-area');
+        const btn = document.getElementById('screenshot-btn-element');
+        
+        // Hide button temporarily so it doesn't appear in the shot
+        if (btn) btn.style.visibility = 'hidden';
+
+        html2canvas(bracketArea, {
+            backgroundColor: '#0f172a', // Body background color
+            scale: 2, // Higher quality
+            logging: false,
+            useCORS: true // In case of external images, though none here
+        }).then(canvas => {
+            // Restore button
+            if (btn) btn.style.visibility = 'visible';
+
+            // Create a download link
+            const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            const link = document.createElement('a');
+            link.download = 'pinewood-derby-bracket.png';
+            link.href = image;
+            link.click();
+        });
+    }
+
+    function render() {
+        const container = document.getElementById('bracket-area');
+        container.innerHTML = '';
+
+        // 1. MS. BADESCU'S CLASS COLUMN (Groups B1-B6)
+        const leftCol = document.createElement('div');
+        leftCol.className = 'side-column left-side';
+        leftCol.innerHTML = '<div class="round-title">Ms. Badescu\'s class</div>';
+        tournament.leftWing.forEach((group, gIdx) => {
+            leftCol.innerHTML += `
+                <div class="group-card">
+                    <div class="group-header">Group B${gIdx + 1}</div>
+                    ${group.map(racer => `
+                        <div class="racer-row">
+                            <span class="racer-name" title="${racer}">${racer}</span>
+                            <button class="win-btn ${tournament.winnersLeft[gIdx] === racer ? 'winner-picked' : ''}" 
+                                onclick="pickWinner('L', ${gIdx}, '${racer}')">
+                                ${tournament.winnersLeft[gIdx] === racer ? 'Winner ✓' : '&nbsp;'}
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        });
+
+        // 2. CENTER STAGE COLUMN
+        const centerCol = document.createElement('div');
+        centerCol.className = 'center-column';
+
+        if (tournament.semifinals.length > 0) {
+            // Add Screenshot button here
+            centerCol.innerHTML += `
+                <button id="screenshot-btn-element" class="screenshot-btn" onclick="takeScreenshot()">
+                    📸 Download Bracket Screenshot
+                </button>
+            `;
+
+            let semiHTML = `<div class="center-box"><div class="round-title">⚡ Semifinals</div>`;
+            tournament.semifinals.forEach((group, gIdx) => {
+                semiHTML += `
+                    <div class="group-card" style="margin-bottom: 1rem;">
+                        <div class="group-header">Semi Group ${gIdx + 1}</div>
+                        ${group.map(racer => `
+                            <div class="racer-row">
+                                <span class="racer-name" title="${racer}">${racer}</span>
+                                <button class="win-btn ${tournament.semiWinners[gIdx] === racer ? 'winner-picked' : ''}" 
+                                    onclick="pickWinner('SF', ${gIdx}, '${racer}')">
+                                    ${tournament.semiWinners[gIdx] === racer ? 'Winner ✓' : '&nbsp;'}
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            });
+            semiHTML += `</div>`;
+            centerCol.innerHTML += semiHTML;
+        } else {
+            centerCol.innerHTML += `<div style="color: var(--text-muted); font-style: italic; text-align:center; max-width: 280px; line-height: 1.4;">
+                Select all group winners to reveal the Semifinals.
+            </div>`;
+        }
+
+        if (tournament.grandFinals.length > 0) {
+            centerCol.innerHTML += `
+                <div class="center-box">
+                    <div class="round-title">🔥 Grand Finals</div>
+                    <div class="group-card" style="border-color: #eab308;">
+                        <div class="group-header" style="color: #eab308;">Ultimate 3-Way Shootout</div>
+                        ${tournament.grandFinals[0].map(racer => `
+                            <div class="racer-row">
+                                <span class="racer-name" title="${racer}">${racer}</span>
+                                <button class="win-btn ${tournament.champion === racer ? 'winner-picked' : ''}" 
+                                    onclick="pickWinner('GF', 0, '${racer}')">
+                                    ${tournament.champion === racer ? '👑 Champion' : '&nbsp;'}
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        if (tournament.champion) {
+            centerCol.innerHTML += `
+                <div class="champion-card">
+                    🏆 CHAMPION 🏆
+                    <div style="font-size: 1.6rem; color: #fef08a; margin: 0.5rem 0;">${tournament.champion}</div>
+                    <button onclick="resetApp()" style="background-color: var(--success); font-size: 0.85rem; padding: 0.5rem 1rem;">New Tournament</button>
+                </div>
+            `;
+        }
+
+        // 3. MS. SCHWIERSCH'S CLASS COLUMN (Groups S1-S6)
+        const rightCol = document.createElement('div');
+        rightCol.className = 'side-column right-side';
+        rightCol.innerHTML = '<div class="round-title">Ms. Schwiersch\'s class</div>';
+        tournament.rightWing.forEach((group, gIdx) => {
+            rightCol.innerHTML += `
+                <div class="group-card">
+                    <div class="group-header">Group S${gIdx + 1}</div>
+                    ${group.map(racer => `
+                        <div class="racer-row">
+                            <span class="racer-name" title="${racer}">${racer}</span>
+                            <button class="win-btn ${tournament.winnersRight[gIdx] === racer ? 'winner-picked' : ''}" 
+                                onclick="pickWinner('R', ${gIdx}, '${racer}')">
+                                ${tournament.winnersRight[gIdx] === racer ? 'Winner ✓' : '&nbsp;'}
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        });
+
+        container.appendChild(leftCol);
+        container.appendChild(centerCol);
+        container.appendChild(rightCol);
+    }
+
+    function resetApp() {
+        document.getElementById('setup-card').style.display = 'block';
+        document.getElementById('bracket-area').style.display = 'none';
+        document.getElementById('names-input').value = '';
+        document.getElementById('counter').innerText = "0 / 48 names";
+    }
+</script>
+</body>
+</html>
