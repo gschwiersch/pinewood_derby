@@ -28,15 +28,12 @@
         
         <!-- ================= HOME PAGE ================= -->
         <div id="page-home" class="page-content py-6">
-            <div class="text-center max-w-xl mx-auto mb-8">
-                <h1 class="text-4xl font-extrabold text-gray-800 mb-3">Gr. 7 Design Pinewood Derby Dashboard</h1>
-                <p class="text-gray-600">Standings are updated dynamically from your local <code class="bg-gray-200 px-1.5 py-0.5 rounded font-mono text-sm text-red-600">times.csv</code> document data file.</p>
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h1 class="text-4xl font-extrabold text-gray-800">Gr. 7 Design Pinewood Derby Dashboard</h1>
             </div>
             
-            <!-- Global Status Alert Banner -->
-            <div id="dataStatusAlert" class="max-w-xl mx-auto bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center">
-                🔄 Checking folder for times.csv...
-            </div>
+            <!-- Hidden Alert Banner (Keeps log outputs working behind the scenes without displaying them) -->
+            <div id="dataStatusAlert" class="hidden"></div>
 
             <!-- 4-Column Grid for Class Cards -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -157,8 +154,10 @@
                 })
                 .catch(error => {
                     console.error(error);
-                    statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
-                    statusAlert.textContent = "❌ Error: 'times.csv' was not found. Place it in the same directory folder as this webpage.";
+                    if(statusAlert) {
+                        statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center block";
+                        statusAlert.textContent = "❌ Error: 'times.csv' was not found. Place it in the same directory folder as this webpage.";
+                    }
                     updateAllTables();
                 });
         }
@@ -170,8 +169,10 @@
             const lines = text.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
             
             if (lines.length < 2) {
-                statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
-                statusAlert.textContent = "❌ Error: The 'times.csv' file was found but it is blank.";
+                if(statusAlert) {
+                    statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center block";
+                    statusAlert.textContent = "❌ Error: The 'times.csv' file was found but it is blank.";
+                }
                 return;
             }
 
@@ -182,8 +183,10 @@
             const idxTime2 = headers.indexOf('time2');
 
             if (idxClass === -1 || idxName === -1 || idxTime1 === -1 || idxTime2 === -1) {
-                statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
-                statusAlert.textContent = "❌ Format Error: 'times.csv' must contain headings named 'Class', 'Name', 'Time1', and 'Time2'.";
+                if(statusAlert) {
+                    statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center block";
+                    statusAlert.textContent = "❌ Format Error: 'times.csv' must contain headings named 'Class', 'Name', 'Time1', and 'Time2'.";
+                }
                 return;
             }
 
@@ -219,8 +222,11 @@
 
             updateAllTables();
             
-            statusAlert.className = "max-w-xl mx-auto bg-green-50 border border-green-200 text-green-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
-            statusAlert.textContent = `✅ Successfully synchronized ${entriesCounter} records from times.csv!`;
+            // Keeps alert element configured safely in background logs without visual layout disruption
+            if(statusAlert) {
+                statusAlert.className = "hidden";
+                statusAlert.textContent = `✅ Successfully synchronized ${entriesCounter} records from times.csv!`;
+            }
         }
 
         function generateRoundHTML() {
@@ -306,7 +312,6 @@
             }).join('');
         }
 
-        // Home View Panel updates to display the Top 4 Racers per class array
         function updateHomeLeaders() {
             roundIds.forEach(id => {
                 const container = document.getElementById(`home-leaders-${id}`);
@@ -318,7 +323,6 @@
                     return;
                 }
 
-                // Slice array to extract only the top 4 values
                 const top4 = list.slice(0, 4);
 
                 let html = `<div class="divide-y divide-gray-100 border border-gray-100 rounded-lg overflow-hidden bg-gray-50/50">`;
@@ -344,7 +348,6 @@
                     `;
                 });
 
-                // Fillers if a class has fewer than 4 racers logged yet
                 for (let i = top4.length; i < 4; i++) {
                     html += `
                         <div class="flex items-center justify-between p-2 text-gray-300 italic text-xs">
@@ -369,6 +372,7 @@
             updateHomeLeaders();
         }
 
+        // Security escaping utility
         function escapeHtml(str) {
             return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
