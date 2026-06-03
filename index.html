@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinewood Derby</title>
+    <title>Gr. 7 Design Pinewood Derby</title>
+    <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-gray-100 font-sans min-h-screen">
 
+    <!-- Top Navigation Bar -->
     <nav class="bg-blue-600 text-white shadow-lg p-4 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="#" onclick="showPage('home')" class="text-2xl font-bold tracking-wider hover:text-blue-200 transition">Gr. 7 Design Pinewood Derby</a>
@@ -21,65 +23,71 @@
         </div>
     </nav>
 
+    <!-- Main Content Area -->
     <main class="max-w-6xl mx-auto p-4 md:p-6">
         
+        <!-- ================= HOME PAGE ================= -->
         <div id="page-home" class="page-content text-center py-12">
-            <h1 class="text-4xl font-extrabold text-gray-800 mb-4">Pinewood Derby Dashboard</h1>
-            <p class="text-gray-600 mb-8 max-w-md mx-auto">Track times, calculate averages, and manage standings dynamically across all competition rounds.</p>
+            <h1 class="text-4xl font-extrabold text-gray-800 mb-4">Gr. 7 Design Pinewood Derby Dashboard</h1>
+            <p class="text-gray-600 mb-8 max-w-md mx-auto">Standings are updated dynamically from your local <code class="bg-gray-200 px-1.5 py-0.5 rounded font-mono text-sm text-red-600">times.csv</code> document data file.</p>
             
+            <!-- Global Status Alert Banner -->
+            <div id="dataStatusAlert" class="max-w-xl mx-auto bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold flex items-center justify-center gap-2">
+                🔄 Checking folder for times.csv...
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <!-- Card 7-1 -->
                 <button onclick="showPage('7-1')" class="p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-blue-500 border-2 border-transparent transition text-left group flex flex-col justify-between min-h-[180px]">
                     <div>
-                        <span class="block text-blue-600 font-bold text-lg mb-1">Round 7-1</span>
+                        <span class="block text-blue-600 font-bold text-lg mb-1">Class 7-1</span>
                         <span class="text-sm text-gray-500 group-hover:text-gray-700">Qualifying Round</span>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-100">
                         <span class="block text-xs uppercase tracking-wider font-semibold text-gray-400 mb-1">👑 Top Racer</span>
-                        <span id="home-leader-7-1" class="block text-sm font-bold text-gray-800 truncate">No races logged yet.</span>
+                        <span id="home-leader-7-1" class="block text-sm font-bold text-gray-800 truncate">--</span>
                     </div>
                 </button>
 
+                <!-- Card 7-2 -->
                 <button onclick="showPage('7-2')" class="p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-blue-500 border-2 border-transparent transition text-left group flex flex-col justify-between min-h-[180px]">
                     <div>
-                        <span class="block text-blue-600 font-bold text-lg mb-1">Round 7-2</span>
-                        <span class="text-sm text-gray-500 group-hover:text-gray-700">Semi-Final Round</span>
+                        <span class="block text-blue-600 font-bold text-lg mb-1">Class 7-2</span>
+                        <span class="text-sm text-gray-500 group-hover:text-gray-700">Qualifying Round</span>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-100">
                         <span class="block text-xs uppercase tracking-wider font-semibold text-gray-400 mb-1">👑 Top Racer</span>
-                        <span id="home-leader-7-2" class="block text-sm font-bold text-gray-800 truncate">No races logged yet.</span>
+                        <span id="home-leader-7-2" class="block text-sm font-bold text-gray-800 truncate">--</span>
                     </div>
                 </button>
 
+                <!-- Card 7-3 -->
                 <button onclick="showPage('7-3')" class="p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-blue-500 border-2 border-transparent transition text-left group flex flex-col justify-between min-h-[180px]">
                     <div>
-                        <span class="block text-blue-600 font-bold text-lg mb-1">Round 7-3</span>
-                        <span class="text-sm text-gray-500 group-hover:text-gray-700">Finals Round</span>
+                        <span class="block text-blue-600 font-bold text-lg mb-1">Class 7-3</span>
+                        <span class="text-sm text-gray-500 group-hover:text-gray-700">Qualifying Round</span>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-100">
                         <span class="block text-xs uppercase tracking-wider font-semibold text-gray-400 mb-1">👑 Top Racer</span>
-                        <span id="home-leader-7-3" class="block text-sm font-bold text-gray-800 truncate">No races logged yet.</span>
+                        <span id="home-leader-7-3" class="block text-sm font-bold text-gray-800 truncate">--</span>
                     </div>
                 </button>
 
+                <!-- Card 7-4 -->
                 <button onclick="showPage('7-4')" class="p-6 bg-white rounded-xl shadow-md hover:shadow-lg hover:border-blue-500 border-2 border-transparent transition text-left group flex flex-col justify-between min-h-[180px]">
                     <div>
-                        <span class="block text-blue-600 font-bold text-lg mb-1">Round 7-4</span>
-                        <span class="text-sm text-gray-500 group-hover:text-gray-700">Championship Round</span>
+                        <span class="block text-blue-600 font-bold text-lg mb-1">Class 7-4</span>
+                        <span class="text-sm text-gray-500 group-hover:text-gray-700">Qualifying Round</span>
                     </div>
                     <div class="mt-4 pt-3 border-t border-gray-100">
                         <span class="block text-xs uppercase tracking-wider font-semibold text-gray-400 mb-1">👑 Top Racer</span>
-                        <span id="home-leader-7-4" class="block text-sm font-bold text-gray-800 truncate">No races logged yet.</span>
+                        <span id="home-leader-7-4" class="block text-sm font-bold text-gray-800 truncate">--</span>
                     </div>
-                </button>
-            </div>
-
-            <div class="mt-12">
-                <button onclick="clearAllData()" class="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 text-sm font-medium rounded-md transition shadow-sm">
-                    ⚠️ Reset Entire App (Clear All Rounds)
                 </button>
             </div>
         </div>
 
+        <!-- ================= DYNAMIC CLASS PAGES ================= -->
         <div id="page-7-1" class="page-content hidden"></div>
         <div id="page-7-2" class="page-content hidden"></div>
         <div id="page-7-3" class="page-content hidden"></div>
@@ -87,91 +95,135 @@
 
     </main>
 
+    <!-- JavaScript Application Logic -->
     <script>
         const roundIds = ['7-1', '7-2', '7-3', '7-4'];
         const roundTitles = {
-            '7-1': '7-1 Qualifying Round',
-            '7-2': '7-2 Semi-Final Round',
-            '7-3': '7-3 Finals Round',
-            '7-4': '7-4 Championship Round'
+            '7-1': 'Class 7-1 Qualifying Round',
+            '7-2': 'Class 7-2 Qualifying Round',
+            '7-3': 'Class 7-3 Qualifying Round',
+            '7-4': 'Class 7-4 Qualifying Round'
         };
 
         let db = { '7-1': [], '7-2': [], '7-3': [], '7-4': [] };
 
         window.addEventListener('DOMContentLoaded', () => {
-            loadAllData();
             generateRoundHTML();
-            updateAllTables();
+            // Automatically scan directory for the times.csv file
+            fetchLocalCSV();
             showPage('home');
         });
 
-        function loadAllData() {
+        // Automated Fetch Engine mapping local directories
+        function fetchLocalCSV() {
+            const statusAlert = document.getElementById('dataStatusAlert');
+            
+            fetch('times.csv')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Could not find 'times.csv' file in this directory folder.`);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    processCSVText(text);
+                })
+                .catch(error => {
+                    console.error(error);
+                    statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
+                    statusAlert.textContent = "❌ Error: 'times.csv' was not found. Place it in the same directory folder as this webpage.";
+                    updateAllTables();
+                });
+        }
+
+        function processCSVText(text) {
+            const statusAlert = document.getElementById('dataStatusAlert');
+            let tempDb = { '7-1': [], '7-2': [], '7-3': [], '7-4': [] };
+            
+            const lines = text.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
+            
+            if (lines.length < 2) {
+                statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
+                statusAlert.textContent = "❌ Error: The 'times.csv' file was found but it is blank.";
+                return;
+            }
+
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            const idxClass = headers.indexOf('class');
+            const idxName = headers.indexOf('name');
+            const idxTime1 = headers.indexOf('time1');
+            const idxTime2 = headers.indexOf('time2');
+
+            if (idxClass === -1 || idxName === -1 || idxTime1 === -1 || idxTime2 === -1) {
+                statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
+                statusAlert.textContent = "❌ Format Error: 'times.csv' must contain column headers named 'Class', 'Name', 'Time1', and 'Time2'.";
+                return;
+            }
+
+            let entriesCounter = 0;
+
+            for (let i = 1; i < lines.length; i++) {
+                const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(item => item.trim().replace(/^"|"$/g, ''));
+                
+                if (row.length <= Math.max(idxClass, idxName, idxTime1, idxTime2)) continue;
+
+                let classId = row[idxClass].replace(/^class\s+/i, ''); 
+                const name = row[idxName];
+                const t1 = parseFloat(row[idxTime1]);
+                const t2 = parseFloat(row[idxTime2]);
+
+                if (!roundIds.includes(classId) || !name || isNaN(t1) || isNaN(t2)) continue;
+
+                const average = (t1 + t2) / 2;
+
+                tempDb[classId].push({
+                    name: name,
+                    t1: t1,
+                    t2: t2,
+                    avg: average
+                });
+                entriesCounter++;
+            }
+
+            // Sort logic pipeline
             roundIds.forEach(id => {
-                const localData = localStorage.getItem(`pinewood_round_${id}`);
-                if (localData) {
-                    db[id] = JSON.parse(localData);
-                }
+                tempDb[id].sort((a, b) => a.avg - b.avg);
+                db[id] = tempDb[id];
             });
+
+            updateAllTables();
+            
+            statusAlert.className = "max-w-xl mx-auto bg-green-50 border border-green-200 text-green-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center";
+            statusAlert.textContent = `✅ Successfully synchronized ${entriesCounter} records from times.csv file!`;
         }
 
         function generateRoundHTML() {
             roundIds.forEach(id => {
                 const container = document.getElementById(`page-${id}`);
                 container.innerHTML = `
-                    <div class="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                        <div>
-                            <button onclick="showPage('home')" class="text-sm text-blue-600 hover:underline">← Back to Home</button>
-                            <h1 class="text-3xl font-bold text-gray-800 mt-1">${roundTitles[id]}</h1>
-                        </div>
-                        <button onclick="clearSingleRound('${id}')" class="w-fit px-3 py-1 bg-gray-200 hover:bg-red-100 hover:text-red-700 text-gray-600 text-xs font-medium rounded transition">
-                            Reset Round ${id} Data
-                        </button>
+                    <div class="mb-6">
+                        <button onclick="showPage('home')" class="text-sm text-blue-600 hover:underline">← Back to Home</button>
+                        <h1 class="text-3xl font-bold text-gray-800 mt-1">${roundTitles[id]}</h1>
                     </div>
 
-                    <div class="grid lg:grid-cols-3 gap-6">
-                        <div class="bg-white p-6 rounded-xl shadow-md h-fit">
-                            <h2 class="text-lg font-semibold text-gray-700 mb-4">Add Racer Data</h2>
-                            <form onsubmit="handleFormSubmit(event, '${id}')" class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-600 mb-1">Student Name</label>
-                                    <input type="text" id="name-${id}" required placeholder="e.g., Alex Johnson" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                </div>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-600 mb-1">Time 1 (sec)</label>
-                                        <input type="number" id="t1-${id}" step="0.001" min="0" required placeholder="4.250" 
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-600 mb-1">Time 2 (sec)</label>
-                                        <input type="number" id="t2-${id}" step="0.001" min="0" required placeholder="4.180" 
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                    </div>
-                                </div>
-                                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md font-medium hover:bg-blue-700 transition shadow mt-2">
-                                    Press Enter or Click to Add
-                                </button>
-                            </form>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden max-w-4xl mx-auto">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+                            <h2 class="text-lg font-semibold text-gray-700">Leaderboard (Fastest First)</h2>
+                            <span id="badge-${id}" class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">0 Racers</span>
                         </div>
-
-                        <div class="lg:col-span-2 bg-white rounded-xl shadow-md overflow-hidden">
-                            <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-                                <h2 class="text-lg font-semibold text-gray-700">Leaderboard (Fastest First)</h2>
-                                <span id="badge-${id}" class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">0 Racers</span>
-                            </div>
-                            <div class="overflow-x-auto">
-                                <table class="w-full text-left border-collapse">
-                                    <thead>
-                                        <tr class="bg-gray-100 text-gray-600 text-sm uppercase tracking-wider">
-                                            <th class="py-3 px-6 font-semibold w-20">Rank</th>
-                                            <th class="py-3 px-6 font-semibold">Name</th>
-                                            <th class="py-3 px-6 font-semibold text-right w-36">Avg Time (s)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbody-${id}" class="divide-y divide-gray-200 text-gray-700"></tbody>
-                                </table>
-                            </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-600 text-sm uppercase tracking-wider">
+                                        <th class="py-3 px-6 font-semibold w-20">Rank</th>
+                                        <th class="py-3 px-6 font-semibold">Name</th>
+                                        <th class="py-3 px-6 font-semibold text-center w-28">Time 1</th>
+                                        <th class="py-3 px-6 font-semibold text-center w-28">Time 2</th>
+                                        <th class="py-3 px-6 font-semibold text-right w-36">Avg Time (s)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-${id}" class="divide-y divide-gray-200 text-gray-700"></tbody>
+                            </table>
                         </div>
                     </div>
                 `;
@@ -192,39 +244,6 @@
                     }
                 }
             });
-
-            if (roundIds.includes(pageId)) {
-                setTimeout(() => {
-                    const el = document.getElementById(`name-${pageId}`);
-                    if(el) el.focus();
-                }, 50);
-            }
-        }
-
-        function handleFormSubmit(event, roundId) {
-            event.preventDefault();
-
-            const nameEl = document.getElementById(`name-${roundId}`);
-            const t1El = document.getElementById(`t1-${roundId}`);
-            const t2El = document.getElementById(`t2-${roundId}`);
-
-            const name = nameEl.value.trim();
-            const time1 = parseFloat(t1El.value);
-            const time2 = parseFloat(t2El.value);
-            const average = (time1 + time2) / 2;
-
-            db[roundId].push({ name: name, avg: average });
-            db[roundId].sort((a, b) => a.avg - b.avg);
-
-            localStorage.setItem(`pinewood_round_${roundId}`, JSON.stringify(db[roundId]));
-
-            updateRoundTable(roundId);
-            updateHomeLeaders();
-
-            nameEl.value = '';
-            t1El.value = '';
-            t2El.value = '';
-            nameEl.focus();
         }
 
         function updateRoundTable(roundId) {
@@ -237,7 +256,7 @@
             badge.textContent = `${list.length} Racer${list.length === 1 ? '' : 's'}`;
 
             if (list.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="3" class="py-8 text-center text-gray-400 italic">No race data entered yet.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-400 italic">No race entries matched to this class profile.</td></tr>`;
                 return;
             }
 
@@ -253,26 +272,27 @@
                     <tr class="${rowBg} transition">
                         <td class="py-3 px-6 font-medium ${rankStyle}">#${index + 1}</td>
                         <td class="py-3 px-6 font-semibold text-gray-900">${escapeHtml(racer.name)}</td>
+                        <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t1.toFixed(3)}s</td>
+                        <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t2.toFixed(3)}s</td>
                         <td class="py-3 px-6 font-mono text-right text-blue-600 font-bold">${racer.avg.toFixed(3)}s</td>
                     </tr>
                 `;
             }).join('');
         }
 
-        // NEW FUNCTION: Dynamically looks up index 0 (fastest racer) for each class
         function updateHomeLeaders() {
             roundIds.forEach(id => {
                 const leaderContainer = document.getElementById(`home-leader-${id}`);
                 if(leaderContainer) {
                     const list = db[id];
                     if (list && list.length > 0) {
-                        const topRacer = list[0]; // Since array is pre-sorted, index 0 is always the fastest
+                        const topRacer = list[0];
                         leaderContainer.innerHTML = `
                             <span class="text-blue-600">${escapeHtml(topRacer.name)}</span>
                             <span class="block text-xs font-mono font-normal text-gray-500 mt-0.5">Avg: ${topRacer.avg.toFixed(3)}s</span>
                         `;
                     } else {
-                        leaderContainer.textContent = "No races logged yet.";
+                        leaderContainer.textContent = "No data loaded.";
                     }
                 }
             });
@@ -281,26 +301,6 @@
         function updateAllTables() {
             roundIds.forEach(id => updateRoundTable(id));
             updateHomeLeaders();
-        }
-
-        function clearSingleRound(roundId) {
-            if(confirm(`Are you absolutely sure you want to delete all entries for Round ${roundId}?`)) {
-                db[roundId] = [];
-                localStorage.removeItem(`pinewood_round_${roundId}`);
-                updateRoundTable(roundId);
-                updateHomeLeaders();
-            }
-        }
-
-        function clearAllData() {
-            if(confirm("🚨 WARNING: This will delete ALL data across ALL pages (7-1, 7-2, 7-3, 7-4). Do you want to proceed?")) {
-                roundIds.forEach(id => {
-                    localStorage.removeItem(`pinewood_round_${id}`);
-                    db[id] = [];
-                });
-                updateAllTables();
-                alert("All application databases cleared.");
-            }
         }
 
         function escapeHtml(str) {
