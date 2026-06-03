@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" class="max-w-7xl mx-auto p-4 md:p-6" content="width=device-width, initial-scale=1.0">
     <title>Gr. 7 Design Pinewood Derby</title>
     <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Custom styling to ensure crisp connecting lines */
+        .bracket-svg {
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans min-h-screen">
 
@@ -32,84 +38,124 @@
                 <h1 class="text-4xl font-extrabold text-gray-800">Gr. 7 Design Pinewood Derby Dashboard</h1>
             </div>
             
-            <!-- Hidden Alert Banner (Keeps log outputs working behind the scenes without displaying them) -->
+            <!-- Hidden Alert Banner for data operations logs -->
             <div id="dataStatusAlert" class="hidden"></div>
 
-            <!-- 4-Column Grid for Class Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Top Grid Row: Individual Overview Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+                <!-- 7-1 Card -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between cursor-pointer hover:shadow-md transition" onclick="showPage('7-1')">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Class 7-1</h3>
+                        <p class="text-xs text-gray-400">Click to view full roster</p>
+                    </div>
+                    <span class="text-blue-600 font-bold text-sm bg-blue-50 px-2.5 py-1 rounded-lg">View →</span>
+                </div>
+                <!-- 7-2 Card -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between cursor-pointer hover:shadow-md transition" onclick="showPage('7-2')">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Class 7-2</h3>
+                        <p class="text-xs text-gray-400">Click to view full roster</p>
+                    </div>
+                    <span class="text-blue-600 font-bold text-sm bg-blue-50 px-2.5 py-1 rounded-lg">View →</span>
+                </div>
+                <!-- 7-3 Card -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between cursor-pointer hover:shadow-md transition" onclick="showPage('7-3')">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Class 7-3</h3>
+                        <p class="text-xs text-gray-400">Click to view full roster</p>
+                    </div>
+                    <span class="text-blue-600 font-bold text-sm bg-blue-50 px-2.5 py-1 rounded-lg">View →</span>
+                </div>
+                <!-- 7-4 Card -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between cursor-pointer hover:shadow-md transition" onclick="showPage('7-4')">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">Class 7-4</h3>
+                        <p class="text-xs text-gray-400">Click to view full roster</p>
+                    </div>
+                    <span class="text-blue-600 font-bold text-sm bg-blue-50 px-2.5 py-1 rounded-lg">View →</span>
+                </div>
+            </div>
+
+            <!-- ================= TOURNAMENT BRACKET SECTION ================= -->
+            <div class="relative max-w-6xl mx-auto bg-gray-50/50 rounded-2xl border border-gray-200/80 p-6 shadow-inner">
+                <h2 class="text-center text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">🏆 Championship Finals Bracket 🏆</h2>
                 
-                <!-- Class 7-1 Card -->
-                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-1">
-                            <h2 class="text-xl font-bold text-gray-800">Class 7-1</h2>
-                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
+                <!-- SVG Drawing Layer for Bracket Connectors (Visible on desktop/tablet) -->
+                <svg class="absolute inset-0 w-full h-full hidden md:block bracket-svg" id="bracketLines" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Lines will be dynamically mapped by coordinates -->
+                </svg>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center relative z-10">
+                    
+                    <!-- LEFT SIDE: 7-1 and 7-2 Finisher Pools -->
+                    <div class="flex flex-col space-y-12">
+                        <!-- Box 7-1 -->
+                        <div id="bracket-box-7-1" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="flex justify-between items-center mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-1 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-1" class="space-y-1.5"></div>
                         </div>
-                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Leaderboard</p>
-                        
-                        <div id="home-leaders-7-1" class="space-y-2 text-sm text-gray-500">
-                            Loading standings...
+
+                        <!-- Box 7-2 -->
+                        <div id="bracket-box-7-2" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="flex justify-between items-center mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-2 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-2" class="space-y-1.5"></div>
                         </div>
                     </div>
-                    <button onclick="showPage('7-1')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
-                        View Full Standings →
-                    </button>
-                </div>
 
-                <!-- Class 7-2 Card -->
-                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-1">
-                            <h2 class="text-xl font-bold text-gray-800">Class 7-2</h2>
-                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
-                        </div>
-                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Leaderboard</p>
-                        
-                        <div id="home-leaders-7-2" class="space-y-2 text-sm text-gray-500">
-                            Loading standings...
+                    <!-- MIDDLE STAGE: Class Representatives Finals Board -->
+                    <div class="px-2">
+                        <div id="finals-arena-card" class="bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-5 border-4 border-yellow-400/80 transform hover:scale-[1.01] transition-all">
+                            <div class="text-center border-b border-blue-400/40 pb-3 mb-4">
+                                <span class="text-[10px] uppercase font-black tracking-widest text-yellow-300">The Grand Arena</span>
+                                <h3 class="font-black text-lg tracking-wide">CHAMPIONSHIP FINALS</h3>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <!-- 7-1 Representative Slot -->
+                                <div id="rep-slot-7-1" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between">
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <!-- 7-2 Representative Slot -->
+                                <div id="rep-slot-7-2" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between">
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <!-- 7-3 Representative Slot -->
+                                <div id="rep-slot-7-3" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between">
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <!-- 7-4 Representative Slot -->
+                                <div id="rep-slot-7-4" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button onclick="showPage('7-2')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
-                        View Full Standings →
-                    </button>
-                </div>
 
-                <!-- Class 7-3 Card -->
-                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-1">
-                            <h2 class="text-xl font-bold text-gray-800">Class 7-3</h2>
-                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
+                    <!-- RIGHT SIDE: 7-3 and 7-4 Finisher Pools -->
+                    <div class="flex flex-col space-y-12">
+                        <!-- Box 7-3 -->
+                        <div id="bracket-box-7-3" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="flex justify-between items-center mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-3 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-3" class="space-y-1.5"></div>
                         </div>
-                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Leaderboard</p>
-                        
-                        <div id="home-leaders-7-3" class="space-y-2 text-sm text-gray-500">
-                            Loading standings...
+
+                        <!-- Box 7-4 -->
+                        <div id="bracket-box-7-4" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="flex justify-between items-center mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-4 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-4" class="space-y-1.5"></div>
                         </div>
                     </div>
-                    <button onclick="showPage('7-3')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
-                        View Full Standings →
-                    </button>
-                </div>
 
-                <!-- Class 7-4 Card -->
-                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-1">
-                            <h2 class="text-xl font-bold text-gray-800">Class 7-4</h2>
-                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
-                        </div>
-                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Leaderboard</p>
-                        
-                        <div id="home-leaders-7-4" class="space-y-2 text-sm text-gray-500">
-                            Loading standings...
-                        </div>
-                    </div>
-                    <button onclick="showPage('7-4')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
-                        View Full Standings →
-                    </button>
                 </div>
-
             </div>
         </div>
 
@@ -137,6 +183,9 @@
             generateRoundHTML();
             fetchLocalCSV();
             showPage('home');
+            
+            // Recalculate bracket wire connections on resize
+            window.addEventListener('resize', drawBracketLines);
         });
 
         function fetchLocalCSV() {
@@ -144,37 +193,25 @@
             
             fetch('times.csv')
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Could not find 'times.csv' file.`);
-                    }
+                    if (!response.ok) throw new Error("Missing csv");
                     return response.text();
                 })
-                .then(text => {
-                    processCSVText(text);
-                })
+                .then(text => processCSVText(text))
                 .catch(error => {
                     console.error(error);
                     if(statusAlert) {
                         statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center block";
-                        statusAlert.textContent = "❌ Error: 'times.csv' was not found. Place it in the same directory folder as this webpage.";
+                        statusAlert.textContent = "❌ Error: 'times.csv' was not found in the root directory.";
                     }
                     updateAllTables();
                 });
         }
 
         function processCSVText(text) {
-            const statusAlert = document.getElementById('dataStatusAlert');
             let tempDb = { '7-1': [], '7-2': [], '7-3': [], '7-4': [] };
-            
             const lines = text.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
             
-            if (lines.length < 2) {
-                if(statusAlert) {
-                    statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center block";
-                    statusAlert.textContent = "❌ Error: The 'times.csv' file was found but it is blank.";
-                }
-                return;
-            }
+            if (lines.length < 2) return;
 
             const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
             const idxClass = headers.indexOf('class');
@@ -182,19 +219,10 @@
             const idxTime1 = headers.indexOf('time1');
             const idxTime2 = headers.indexOf('time2');
 
-            if (idxClass === -1 || idxName === -1 || idxTime1 === -1 || idxTime2 === -1) {
-                if(statusAlert) {
-                    statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center block";
-                    statusAlert.textContent = "❌ Format Error: 'times.csv' must contain headings named 'Class', 'Name', 'Time1', and 'Time2'.";
-                }
-                return;
-            }
-
-            let entriesCounter = 0;
+            if (idxClass === -1 || idxName === -1 || idxTime1 === -1 || idxTime2 === -1) return;
 
             for (let i = 1; i < lines.length; i++) {
                 const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(item => item.trim().replace(/^"|"$/g, ''));
-                
                 if (row.length <= Math.max(idxClass, idxName, idxTime1, idxTime2)) continue;
 
                 let classId = row[idxClass].replace(/^class\s+/i, ''); 
@@ -204,15 +232,7 @@
 
                 if (!roundIds.includes(classId) || !name || isNaN(t1) || isNaN(t2)) continue;
 
-                const average = (t1 + t2) / 2;
-
-                tempDb[classId].push({
-                    name: name,
-                    t1: t1,
-                    t2: t2,
-                    avg: average
-                });
-                entriesCounter++;
+                tempDb[classId].push({ name, t1, t2, avg: (t1 + t2) / 2 });
             }
 
             roundIds.forEach(id => {
@@ -221,12 +241,8 @@
             });
 
             updateAllTables();
-            
-            // Keeps alert element configured safely in background logs without visual layout disruption
-            if(statusAlert) {
-                statusAlert.className = "hidden";
-                statusAlert.textContent = `✅ Successfully synchronized ${entriesCounter} records from times.csv!`;
-            }
+            // Allow DOM parsing before drawing vector nodes
+            setTimeout(drawBracketLines, 200);
         }
 
         function generateRoundHTML() {
@@ -237,10 +253,9 @@
                         <button onclick="showPage('home')" class="text-sm text-blue-600 hover:underline">← Back to Home</button>
                         <h1 class="text-3xl font-bold text-gray-800 mt-1">${roundTitles[id]}</h1>
                     </div>
-
                     <div class="bg-white rounded-xl shadow-md overflow-hidden max-w-4xl mx-auto">
                         <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-                            <h2 class="text-lg font-semibold text-gray-700">Leaderboard (Fastest First)</h2>
+                            <h2 class="text-lg font-semibold text-gray-700">Leaderboard</h2>
                             <span id="badge-${id}" class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">0 Racers</span>
                         </div>
                         <div class="overflow-x-auto">
@@ -251,7 +266,7 @@
                                         <th class="py-3 px-6 font-semibold">Name</th>
                                         <th class="py-3 px-6 font-semibold text-center w-28">Time 1</th>
                                         <th class="py-3 px-6 font-semibold text-center w-28">Time 2</th>
-                                        <th class="py-3 px-6 font-semibold text-right w-36">Avg Time (s)</th>
+                                        <th class="py-3 px-6 font-semibold text-right w-36">Avg Time</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-${id}" class="divide-y divide-gray-200 text-gray-700"></tbody>
@@ -265,43 +280,25 @@
         function showPage(pageId) {
             document.querySelectorAll('.page-content').forEach(page => page.classList.add('hidden'));
             document.getElementById(`page-${pageId}`).classList.remove('hidden');
-
-            roundIds.forEach(id => {
-                const btn = document.querySelector(`.nav-btn-${id}`);
-                if(btn) {
-                    if (id === pageId) {
-                        btn.classList.add('bg-blue-800', 'ring-2', 'ring-white/50');
-                    } else {
-                        btn.classList.remove('bg-blue-800', 'ring-2', 'ring-white/50');
-                    }
-                }
-            });
+            if(pageId === 'home') setTimeout(drawBracketLines, 50);
         }
 
         function updateRoundTable(roundId) {
             const tbody = document.getElementById(`tbody-${roundId}`);
             const badge = document.getElementById(`badge-${roundId}`);
             const list = db[roundId];
-
             if(!tbody) return;
 
             badge.textContent = `${list.length} Racer${list.length === 1 ? '' : 's'}`;
-
             if (list.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-400 italic">No race entries matched to this class profile.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-400 italic">No race entries matched.</td></tr>`;
                 return;
             }
 
             tbody.innerHTML = list.map((racer, index) => {
-                let rankStyle = "text-gray-500";
-                let rowBg = "hover:bg-gray-50";
-                
-                if (index === 0) { rankStyle = "text-yellow-600 font-bold"; rowBg = "bg-yellow-50/60 hover:bg-yellow-50"; }
-                if (index === 1) { rankStyle = "text-gray-400 font-bold"; }
-                if (index === 2) { rankStyle = "text-amber-700 font-bold"; }
-
+                let rankStyle = index === 0 ? "text-yellow-600 font-bold" : (index === 1 ? "text-gray-400 font-bold" : (index === 2 ? "text-amber-700 font-bold" : "text-gray-500"));
                 return `
-                    <tr class="${rowBg} transition">
+                    <tr class="hover:bg-gray-50 transition">
                         <td class="py-3 px-6 font-medium ${rankStyle}">#${index + 1}</td>
                         <td class="py-3 px-6 font-semibold text-gray-900">${escapeHtml(racer.name)}</td>
                         <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t1.toFixed(3)}s</td>
@@ -312,67 +309,115 @@
             }).join('');
         }
 
-        function updateHomeLeaders() {
+        // Populates the bracket interface dynamically
+        function updateBracketView() {
             roundIds.forEach(id => {
-                const container = document.getElementById(`home-leaders-${id}`);
-                if (!container) return;
+                const listContainer = document.getElementById(`bracket-list-${id}`);
+                const repSlot = document.getElementById(`rep-slot-${id}`);
+                const racers = db[id] || [];
 
-                const list = db[id];
-                if (!list || list.length === 0) {
-                    container.innerHTML = `<p class="text-xs text-gray-400 italic py-2">No race data loaded.</p>`;
-                    return;
+                // Populate the Class Top 4 Boxes
+                let listHtml = '';
+                for(let i = 0; i < 4; i++) {
+                    if(racers[i]) {
+                        let rankBadge = i === 0 ? 'bg-yellow-500 text-white' : 'bg-gray-100 text-gray-600';
+                        listHtml += `
+                            <div class="flex items-center justify-between text-xs p-1.5 rounded hover:bg-gray-50">
+                                <div class="flex items-center gap-1.5 truncate">
+                                    <span class="w-4 h-4 shrink-0 flex items-center justify-center font-bold text-[9px] rounded-full ${rankBadge}">${i+1}</span>
+                                    <span class="truncate font-medium text-gray-700">${escapeHtml(racers[i].name)}</span>
+                                </div>
+                                <span class="font-mono font-bold text-gray-500">${racers[i].avg.toFixed(3)}s</span>
+                            </div>`;
+                    } else {
+                        listHtml += `
+                            <div class="flex items-center justify-between text-xs p-1.5 text-gray-300 italic">
+                                <div class="flex items-center gap-1.5"><span class="w-4 h-4 shrink-0 flex items-center justify-center font-bold text-[9px] rounded-full bg-gray-50">#</span><span>Empty Slot</span></div>
+                                <span>--</span>
+                            </div>`;
+                    }
                 }
+                if(listContainer) listContainer.innerHTML = listHtml;
 
-                const top4 = list.slice(0, 4);
+                // Populate Middle Representation slots
+                if(repSlot) {
+                    if(racers[0]) {
+                        repSlot.innerHTML = `
+                            <div class="truncate pr-2">
+                                <p class="text-[10px] text-blue-200 uppercase font-bold tracking-wider">Class ${id} Champion</p>
+                                <p class="font-bold text-sm text-white truncate">${escapeHtml(racers[0].name)}</p>
+                            </div>
+                            <span class="bg-yellow-400 text-blue-900 font-mono font-black text-xs px-2 py-1 rounded shadow-sm shrink-0">${racers[0].avg.toFixed(3)}s</span>
+                        `;
+                    } else {
+                        repSlot.innerHTML = `
+                            <div>
+                                <p class="text-[10px] text-blue-300 uppercase font-bold tracking-wider">Class ${id} Rep</p>
+                                <p class="font-medium text-sm text-blue-200/50 italic">Awaiting Winner...</p>
+                            </div>
+                            <span class="bg-blue-900/40 text-blue-400 font-mono text-xs px-2 py-1 rounded shrink-0">--</span>
+                        `;
+                    }
+                }
+            });
+        }
 
-                let html = `<div class="divide-y divide-gray-100 border border-gray-100 rounded-lg overflow-hidden bg-gray-50/50">`;
+        // Logic to draw tournament wire pathways on viewport
+        function drawBracketLines() {
+            const svg = document.getElementById('bracketLines');
+            if (!svg || svg.clientWidth === 0) return;
+            
+            svg.innerHTML = ''; // Reset path nodes
+            const svgRect = svg.getBoundingClientRect();
+
+            const pairs = [
+                { fromBox: 'bracket-box-7-1', toSlot: 'rep-slot-7-1', side: 'left' },
+                { fromBox: 'bracket-box-7-2', toSlot: 'rep-slot-7-2', side: 'left' },
+                { fromBox: 'bracket-box-7-3', toSlot: 'rep-slot-7-3', side: 'right' },
+                { fromBox: 'bracket-box-7-4', toSlot: 'rep-slot-7-4', side: 'right' }
+            ];
+
+            pairs.forEach(pair => {
+                const elBox = document.getElementById(pair.fromBox);
+                const elSlot = document.getElementById(pair.toSlot);
                 
-                top4.forEach((racer, index) => {
-                    let badgeColor = "bg-gray-200 text-gray-700";
-                    let nameStyle = "text-gray-700 font-medium";
-                    
-                    if (index === 0) { badgeColor = "bg-yellow-500 text-white font-bold"; nameStyle = "text-gray-900 font-bold"; }
-                    if (index === 1) { badgeColor = "bg-slate-400 text-white font-bold"; }
-                    if (index === 2) { badgeColor = "bg-amber-700 text-white font-bold"; }
+                if (!elBox || !elSlot) return;
 
-                    html += `
-                        <div class="flex items-center justify-between p-2 hover:bg-white transition">
-                            <div class="flex items-center gap-2 truncate">
-                                <span class="w-5 h-5 flex items-center justify-center text-[10px] rounded-full shrink-0 ${badgeColor}">
-                                    ${index + 1}
-                                </span>
-                                <span class="truncate text-xs ${nameStyle}">${escapeHtml(racer.name)}</span>
-                            </div>
-                            <span class="font-mono text-xs text-blue-600 font-bold shrink-0 pl-1">${racer.avg.toFixed(3)}s</span>
-                        </div>
-                    `;
-                });
+                const rBox = elBox.getBoundingClientRect();
+                const rSlot = elSlot.getBoundingClientRect();
 
-                for (let i = top4.length; i < 4; i++) {
-                    html += `
-                        <div class="flex items-center justify-between p-2 text-gray-300 italic text-xs">
-                            <div class="flex items-center gap-2">
-                                <span class="w-5 h-5 flex items-center justify-center text-[10px] bg-gray-100 text-gray-300 rounded-full">
-                                    ${i + 1}
-                                </span>
-                                <span>Empty slot</span>
-                            </div>
-                            <span class="font-mono">--</span>
-                        </div>
-                    `;
+                let startX, startY, endX, endY;
+                startY = (rBox.top + rBox.bottom) / 2 - svgRect.top;
+                endY = (rSlot.top + rSlot.bottom) / 2 - svgRect.top;
+
+                if (pair.side === 'left') {
+                    startX = rBox.right - svgRect.left;
+                    endX = rSlot.left - svgRect.left;
+                } else {
+                    startX = rBox.left - svgRect.left;
+                    endX = rSlot.right - svgRect.left;
                 }
 
-                html += `</div>`;
-                container.innerHTML = html;
+                // Generates a clean step-shaped orthogonal tournament pipeline layout curve
+                const midX = startX + (endX - startX) * 0.45;
+                const pathData = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathData);
+                path.setAttribute('stroke', '#cbd5e1'); // light slate connector lines
+                path.setAttribute('stroke-width', '2.5');
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke-linejoin', 'round');
+                
+                svg.appendChild(path);
             });
         }
 
         function updateAllTables() {
             roundIds.forEach(id => updateRoundTable(id));
-            updateHomeLeaders();
+            updateBracketView();
         }
 
-        // Security escaping utility
         function escapeHtml(str) {
             return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
