@@ -43,7 +43,7 @@ Class,Name,Time1,Time2
 7-2,Rebecca,2.559,2.404
 7-2,Tessa,2.656,2.643
 7-2,Elpida,2.542,2.687
-7-2,Angela,2.525,2.565
+7-2,Angela*,2.525,2.565
 7-2,Madison,2.608,2.583
 7-2,Elva,2.683,2.676
 7-2,Alisa,2.676,2.642
@@ -54,7 +54,7 @@ Class,Name,Time1,Time2
 7-1,Olivia,2.663,2.962
 7-1,Millie,2.577,2.598
 7-1,Annabelle,2.605,2.573
-7-1,Mei-Lin,2.5885,2.5665
+7-1,Mei-Lin*,2.5885,2.5665
 7-1,Heidi,2.801,2.746
 7-1,Sophie,2.937,2.705
 7-1,Amber M,2.531,2.509
@@ -85,5 +85,5 @@ Class,Name,Time1,Time2
 7-3,Lyla,2.594,2.612
 7-1 champion,Mei-Lin,,
 7-2 champion,Angela,,
-7-3 champion,Martha,,
+7-3 champion,Martha*,,,
 7-4 champion,Ana,,
