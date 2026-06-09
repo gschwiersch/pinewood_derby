@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gr. 7 Design Pinewood Derby</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /* Custom styling to ensure crisp connecting lines */
+        .bracket-svg {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen">
+
+    <nav class="bg-blue-600 text-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="#" onclick="showPage('home')" class="text-2xl font-bold tracking-wider hover:text-blue-200 transition">Gr. 7 Design Pinewood Derby</a>
+            <div class="flex space-x-1 md:space-x-2">
+                <button onclick="showPage('home')" class="px-3 py-1.5 rounded hover:bg-blue-700 transition font-medium text-sm">Home</button>
+                <button onclick="showPage('7-1')" class="nav-btn-7-1 px-3 py-1.5 rounded hover:bg-blue-700 transition font-medium text-sm">7-1</button>
+                <button onclick="showPage('7-2')" class="nav-btn-7-2 px-3 py-1.5 rounded hover:bg-blue-700 transition font-medium text-sm">7-2</button>
+                <button onclick="showPage('7-3')" class="nav-btn-7-3 px-3 py-1.5 rounded hover:bg-blue-700 transition font-medium text-sm">7-3</button>
+                <button onclick="showPage('7-4')" class="nav-btn-7-4 px-3 py-1.5 rounded hover:bg-blue-700 transition font-medium text-sm">7-4</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-6">
+        
+        <div id="page-home" class="page-content py-6">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h1 class="text-4xl font-extrabold text-gray-800">Gr. 7 Design Pinewood Derby Dashboard</h1>
+            </div>
+            
+            <div id="dataStatusAlert" class="hidden"></div>
+
+            <div class="relative max-w-6xl mx-auto bg-gray-50/50 rounded-2xl border border-gray-200/80 p-6 shadow-inner mb-12">
+                <h2 class="text-center text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">🏆 Championship Finals Bracket 🏆</h2>
+                
+                <svg class="absolute inset-0 w-full h-full hidden md:block bracket-svg" id="bracketLines" xmlns="http://www.w3.org/2000/svg">
+                    </svg>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center relative z-10">
+                    
+                    <div class="flex flex-col space-y-12">
+                        <div id="bracket-box-7-1" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-1 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-1" class="space-y-1.5"></div>
+                        </div>
+
+                        <div id="bracket-box-7-2" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-2 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-2" class="space-y-1.5"></div>
+                        </div>
+                    </div>
+
+                    <div class="px-2">
+                        <div id="finals-arena-card" class="bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-5 border-4 border-yellow-400/80 transform hover:scale-[1.01] transition-all">
+                            <div class="text-center border-b border-blue-400/40 pb-3 mb-4">
+                                <span class="text-[10px] uppercase font-black tracking-widest text-yellow-300">The Grand Arena</span>
+                                <h3 class="font-black text-lg tracking-wide">CHAMPIONSHIP FINALS</h3>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div id="rep-slot-7-1" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
+                                    </div>
+                                <div id="rep-slot-7-2" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
+                                    </div>
+                                <div id="rep-slot-7-3" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
+                                    </div>
+                                <div id="rep-slot-7-4" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col space-y-12">
+                        <div id="bracket-box-7-3" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-3 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-3" class="space-y-1.5"></div>
+                        </div>
+
+                        <div id="bracket-box-7-4" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-4 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-4" class="space-y-1.5"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-xl font-bold text-gray-800">Class 7-1</h2>
+                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Pool</p>
+                        <div id="home-leaders-7-1" class="space-y-2 text-sm text-gray-500">
+                            Loading standings...
+                        </div>
+                    </div>
+                    <button onclick="showPage('7-1')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
+                        View Full Roster →
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-xl font-bold text-gray-800">Class 7-2</h2>
+                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Pool</p>
+                        <div id="home-leaders-7-2" class="space-y-2 text-sm text-gray-500">
+                            Loading standings...
+                        </div>
+                    </div>
+                    <button onclick="showPage('7-2')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
+                        View Full Roster →
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-xl font-bold text-gray-800">Class 7-3</h2>
+                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Pool</p>
+                        <div id="home-leaders-7-3" class="space-y-2 text-sm text-gray-500">
+                            Loading standings...
+                        </div>
+                    </div>
+                    <button onclick="showPage('7-3')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
+                        View Full Roster →
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h2 class="text-xl font-bold text-gray-800">Class 7-4</h2>
+                            <span class="text-xs bg-blue-50 text-blue-600 font-semibold px-2 py-0.5 rounded">Qualifying</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4 font-medium tracking-wide uppercase">👑 Top 4 Pool</p>
+                        <div id="home-leaders-7-4" class="space-y-2 text-sm text-gray-500">
+                            Loading standings...
+                        </div>
+                    </div>
+                    <button onclick="showPage('7-4')" class="mt-5 w-full text-center text-xs font-semibold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 py-2 rounded-lg transition">
+                        View Full Roster →
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="page-7-1" class="page-content hidden"></div>
+        <div id="page-7-2" class="page-content hidden"></div>
+        <div id="page-7-3" class="page-content hidden"></div>
+        <div id="page-7-4" class="page-content hidden"></div>
+
+    </main>
+
+    <script>
+        const roundIds = ['7-1', '7-2', '7-3', '7-4'];
+        const roundTitles = {
+            '7-1': 'Class 7-1 Qualifying Round',
+            '7-2': 'Class 7-2 Qualifying Round',
+            '7-3': 'Class 7-3 Qualifying Round',
+            '7-4': 'Class 7-4 Qualifying Round'
+        };
+
+        let db = { '7-1': [], '7-2': [], '7-3': [], '7-4': [] };
+        let champions = { '7-1': null, '7-2': null, '7-3': null, '7-4': null };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            generateRoundHTML();
+            fetchLocalCSV();
+            showPage('home');
+            
+            // Recalculate bracket wire connections on resize
+            window.addEventListener('resize', drawBracketLines);
+        });
+
+        function fetchLocalCSV() {
+            const statusAlert = document.getElementById('dataStatusAlert');
+            
+            fetch('times.csv')
+                .then(response => {
+                    if (!response.ok) throw new Error("Missing csv");
+                    return response.text();
+                })
+                .then(text => processCSVText(text))
+                .catch(error => {
+                    console.error(error);
+                    if(statusAlert) {
+                        statusAlert.className = "max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 mb-10 text-sm font-semibold text-center block";
+                        statusAlert.textContent = "❌ Error: 'times.csv' was not found in the root directory.";
+                    }
+                    updateAllTables();
+                });
+        }
+
+        function processCSVText(text) {
+            let tempDb = { '7-1': [], '7-2': [], '7-3': [], '7-4': [] };
+            let tempChamps = { '7-1': null, '7-2': null, '7-3': null, '7-4': null };
+            
+            const lines = text.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
+            if (lines.length < 2) return;
+
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            const idxClass = headers.indexOf('class');
+            const idxName = headers.indexOf('name');
+            const idxTime1 = headers.indexOf('time1');
+            const idxTime2 = headers.indexOf('time2');
+
+            if (idxClass === -1 || idxName === -1 || idxTime1 === -1 || idxTime2 === -1) return;
+
+            for (let i = 1; i < lines.length; i++) {
+                const row = lines[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(item => item.trim().replace(/^"|"$/g, ''));
+                if (row.length <= Math.max(idxClass, idxName, idxTime1, idxTime2)) continue;
+
+                let classIdRaw = row[idxClass].trim();
+                let classIdClean = classIdRaw.replace(/^class\s+/i, ''); 
+                let classIdLower = classIdClean.toLowerCase();
+
+                const name = row[idxName];
+                const t1 = parseFloat(row[idxTime1]);
+                const t2 = parseFloat(row[idxTime2]);
+                
+                if (!name) continue;
+
+                let average = null;
+                if (!isNaN(t1) && !isNaN(t2)) average = (t1 + t2) / 2;
+                else if (!isNaN(t1)) average = t1;
+                else if (!isNaN(t2)) average = t2;
+
+                if (roundIds.includes(classIdClean)) {
+                    if (average !== null) {
+                        tempDb[classIdClean].push({ name, t1: isNaN(t1)?0:t1, t2: isNaN(t2)?0:t2, avg: average });
+                    }
+                } else if (classIdLower === '7-1 champion') {
+                    tempChamps['7-1'] = { name, avg: average };
+                } else if (classIdLower === '7-2 champion') {
+                    tempChamps['7-2'] = { name, avg: average };
+                } else if (classIdLower === '7-3 champion') {
+                    tempChamps['7-3'] = { name, avg: average };
+                } else if (classIdLower === '7-4 champion') {
+                    tempChamps['7-4'] = { name, avg: average };
+                }
+            }
+
+            roundIds.forEach(id => {
+                tempDb[id].sort((a, b) => a.avg - b.avg);
+                db[id] = tempDb[id];
+            });
+            champions = tempChamps;
+
+            updateAllTables();
+            setTimeout(drawBracketLines, 200);
+        }
+
+        function generateRoundHTML() {
+            roundIds.forEach(id => {
+                const container = document.getElementById(`page-${id}`);
+                container.innerHTML = `
+                    <div class="mb-6">
+                        <button onclick="showPage('home')" class="text-sm text-blue-600 hover:underline">← Back to Home</button>
+                        <h1 class="text-3xl font-bold text-gray-800 mt-1">${roundTitles[id]}</h1>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden max-w-4xl mx-auto">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+                            <h2 class="text-lg font-semibold text-gray-700">Leaderboard</h2>
+                            <span id="badge-${id}" class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">0 Racers</span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-100 text-gray-600 text-sm uppercase tracking-wider">
+                                        <th class="py-3 px-6 font-semibold w-20">Rank</th>
+                                        <th class="py-3 px-6 font-semibold">Name</th>
+                                        <th class="py-3 px-6 font-semibold text-center w-28">Time 1</th>
+                                        <th class="py-3 px-6 font-semibold text-center w-28">Time 2</th>
+                                        <th class="py-3 px-6 font-semibold text-right w-36">Avg Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-${id}" class="divide-y divide-gray-200 text-gray-700"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(page => page.classList.add('hidden'));
+            document.getElementById(`page-${pageId}`).classList.remove('hidden');
+            if(pageId === 'home') setTimeout(drawBracketLines, 50);
+        }
+
+        // Helper function to dynamically check name formatting and apply yellow text highlights
+        function formatNameHtml(nameStr) {
+            const cleanName = escapeHtml(nameStr);
+            if (nameStr && nameStr.includes('*')) {
+                return `<span class="bg-yellow-200 px-1 rounded text-gray-900 font-bold">${cleanName}</span>`;
+            }
+            return cleanName;
+        }
+
+        function updateRoundTable(roundId) {
+            const tbody = document.getElementById(`tbody-${roundId}`);
+            const badge = document.getElementById(`badge-${roundId}`);
+            const list = db[roundId];
+            if(!tbody) return;
+
+            badge.textContent = `${list.length} Racer${list.length === 1 ? '' : 's'}`;
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-gray-400 italic">No race entries matched.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = list.map((racer, index) => {
+                let rankStyle = index === 0 ? "text-yellow-600 font-bold" : (index === 1 ? "text-gray-400 font-bold" : (index === 2 ? "text-amber-700 font-bold" : "text-gray-500"));
+                return `
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="py-3 px-6 font-medium ${rankStyle}">#${index + 1}</td>
+                        <td class="py-3 px-6 font-semibold text-gray-900">${formatNameHtml(racer.name)}</td>
+                        <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t1.toFixed(3)}s</td>
+                        <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t2.toFixed(3)}s</td>
+                        <td class="py-3 px-6 font-mono text-right text-blue-600 font-bold">${racer.avg.toFixed(3)}s</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function updateHomeLeaders() {
+            roundIds.forEach(id => {
+                const container = document.getElementById(`home-leaders-${id}`);
+                if (!container) return;
+
+                const list = db[id];
+                if (!list || list.length === 0) {
+                    container.innerHTML = `<p class="text-xs text-gray-400 italic py-2">No race data loaded.</p>`;
+                    return;
+                }
+
+                const top4 = list.slice(0, 4);
+                let html = `<div class="divide-y divide-gray-100 border border-gray-100 rounded-lg overflow-hidden bg-gray-50/50">`;
+                
+                top4.forEach((racer, index) => {
+                    let badgeColor = "bg-gray-200 text-gray-700";
+                    let nameStyle = "text-gray-700 font-medium";
+                    
+                    if (index === 0) { badgeColor = "bg-yellow-500 text-white font-bold"; nameStyle = "text-gray-900 font-bold"; }
+                    if (index === 1) { badgeColor = "bg-slate-400 text-white font-bold"; }
+                    if (index === 2) { badgeColor = "bg-amber-700 text-white font-bold"; }
+
+                    html += `
+                        <div class="flex items-center justify-between p-2 hover:bg-white transition">
+                            <div class="flex items-center gap-2 truncate">
+                                <span class="w-5 h-5 flex items-center justify-center text-[10px] rounded-full shrink-0 ${badgeColor}">
+                                    ${index + 1}
+                                </span>
+                                <span class="truncate text-xs ${nameStyle}">${formatNameHtml(racer.name)}</span>
+                            </div>
+                            <span class="font-mono text-xs text-blue-600 font-bold shrink-0 pl-1">${racer.avg.toFixed(3)}s</span>
+                        </div>
+                    `;
+                });
+
+                for (let i = top4.length; i < 4; i++) {
+                    html += `
+                        <div class="flex items-center justify-between p-2 text-gray-300 italic text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="w-5 h-5 flex items-center justify-center text-[10px] bg-gray-100 text-gray-300 rounded-full">
+                                    ${i + 1}
+                                </span>
+                                <span>Empty slot</span>
+                            </div>
+                            <span class="font-mono">--</span>
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+                container.innerHTML = html;
+            });
+        }
+
+        function updateBracketView() {
+            roundIds.forEach(id => {
+                const listContainer = document.getElementById(`bracket-list-${id}`);
+                const repSlot = document.getElementById(`rep-slot-${id}`);
+                const racers = db[id] || [];
+
+                // 1. Populate Bracket Pools
+                let listHtml = '';
+                for(let i = 0; i < 4; i++) {
+                    if(racers[i]) {
+                        let rankBadge = 'bg-gray-100 text-gray-600';
+                        listHtml += `
+                            <div class="flex items-center justify-between text-xs p-1.5 rounded hover:bg-gray-50">
+                                <div class="flex items-center gap-1.5 truncate">
+                                    <span class="w-4 h-4 shrink-0 flex items-center justify-center font-bold text-[9px] rounded-full ${rankBadge}">${i+1}</span>
+                                    <span class="truncate font-medium text-gray-700">${formatNameHtml(racers[i].name)}</span>
+                                </div>
+                                <span class="font-mono font-bold text-gray-500">${racers[i].avg.toFixed(3)}s</span>
+                            </div>`;
+                    } else {
+                        listHtml += `
+                            <div class="flex items-center justify-between text-xs p-1.5 text-gray-300 italic">
+                                <div class="flex items-center gap-1.5">
+                                    <span class="w-4 h-4 shrink-0 flex items-center justify-center font-bold text-[9px] rounded-full bg-gray-50">#</span>
+                                    <span>Empty Slot</span>
+                                </div>
+                                <span>--</span>
+                            </div>`;
+                    }
+                }
+                if(listContainer) listContainer.innerHTML = listHtml;
+
+                // 2. Middle Championship Reps
+                if(repSlot) {
+                    const champ = champions[id];
+                    if(champ) {
+                        repSlot.innerHTML = `
+                            <div class="truncate pr-2">
+                                <p class="text-[10px] text-blue-200 uppercase font-bold tracking-wider">Class ${id} Champion</p>
+                                <p class="font-bold text-sm text-white truncate">${formatNameHtml(champ.name)}</p>
+                            </div>
+                            <span class="bg-yellow-400 text-blue-900 font-mono font-black text-xs px-2 py-1 rounded shadow-sm shrink-0">${champ.avg ? champ.avg.toFixed(3) + 's' : '--'}</span>
+                        `;
+                    } else {
+                        repSlot.innerHTML = `
+                            <div>
+                                <p class="text-[10px] text-blue-300 uppercase font-bold tracking-wider">Class ${id} Representative</p>
+                                <p class="font-medium text-sm text-blue-200/50 italic tracking-wide">Waiting for Result</p>
+                            </div>
+                            <span class="bg-blue-900/40 text-blue-400 font-mono text-xs px-2 py-1 rounded shrink-0">--</span>
+                        `;
+                    }
+                }
+            });
+        }
+
+        function drawBracketLines() {
+            const svg = document.getElementById('bracketLines');
+            if (!svg || svg.clientWidth === 0) return;
+            
+            svg.innerHTML = ''; 
+            const svgRect = svg.getBoundingClientRect();
+
+            const pairs = [
+                { fromBox: 'bracket-box-7-1', toSlot: 'rep-slot-7-1', side: 'left' },
+                { fromBox: 'bracket-box-7-2', toSlot: 'rep-slot-7-2', side: 'left' },
+                { fromBox: 'bracket-box-7-3', toSlot: 'rep-slot-7-3', side: 'right' },
+                { fromBox: 'bracket-box-7-4', toSlot: 'rep-slot-7-4', side: 'right' }
+            ];
+
+            pairs.forEach(pair => {
+                const elBox = document.getElementById(pair.fromBox);
+                const elSlot = document.getElementById(pair.toSlot);
+                if (!elBox || !elSlot) return;
+
+                const rBox = elBox.getBoundingClientRect();
+                const rSlot = elSlot.getBoundingClientRect();
+
+                let startX, startY, endX, endY;
+                startY = (rBox.top + rBox.bottom) / 2 - svgRect.top;
+                endY = (rSlot.top + rSlot.bottom) / 2 - svgRect.top;
+
+                if (pair.side === 'left') {
+                    startX = rBox.right - svgRect.left;
+                    endX = rSlot.left - svgRect.left;
+                } else {
+                    startX = rBox.left - svgRect.left;
+                    endX = rSlot.right - svgRect.left;
+                }
+
+                const midX = startX + (endX - startX) * 0.45;
+                const pathData = `M ${startX} ${startY} L ${midX} ${startY} L ${midX} ${endY} L ${endX} ${endY}`;
+
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', pathData);
+                path.setAttribute('stroke', '#cbd5e1'); 
+                path.setAttribute('stroke-width', '2.5');
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke-linejoin', 'round');
+                svg.appendChild(path);
+            });
+        }
+
+        function updateAllTables() {
+            roundIds.forEach(id => updateRoundTable(id));
+            updateHomeLeaders();
+            updateBracketView();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
