@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gr. 7 Design Pinewood Derby</title>
+    <!-- Tailwind CSS for modern styling -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         /* Custom styling to ensure crisp connecting lines */
@@ -14,6 +15,7 @@
 </head>
 <body class="bg-gray-100 font-sans min-h-screen">
 
+    <!-- Top Navigation Bar -->
     <nav class="bg-blue-600 text-white shadow-lg p-4 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="#" onclick="showPage('home')" class="text-2xl font-bold tracking-wider hover:text-blue-200 transition">Gr. 7 Design Pinewood Derby</a>
@@ -27,24 +29,32 @@
         </div>
     </nav>
 
+    <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto p-4 md:p-6">
         
+        <!-- ================= HOME PAGE ================= -->
         <div id="page-home" class="page-content py-6">
             <div class="text-center max-w-xl mx-auto mb-10">
                 <h1 class="text-4xl font-extrabold text-gray-800">Gr. 7 Design Pinewood Derby Dashboard</h1>
             </div>
             
+            <!-- Hidden Alert Banner for data operations logs -->
             <div id="dataStatusAlert" class="hidden"></div>
 
+            <!-- ================= TOURNAMENT BRACKET SECTION ================= -->
             <div class="relative max-w-6xl mx-auto bg-gray-50/50 rounded-2xl border border-gray-200/80 p-6 shadow-inner mb-12">
                 <h2 class="text-center text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">🏆 Championship Finals Bracket 🏆</h2>
                 
+                <!-- SVG Drawing Layer for Bracket Connectors -->
                 <svg class="absolute inset-0 w-full h-full hidden md:block bracket-svg" id="bracketLines" xmlns="http://www.w3.org/2000/svg">
-                    </svg>
+                    <!-- Lines are dynamically mapped by script coordinates -->
+                </svg>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center relative z-10">
                     
+                    <!-- LEFT SIDE: 7-1 and 7-2 Finisher Pools -->
                     <div class="flex flex-col space-y-12">
+                        <!-- Box 7-1 -->
                         <div id="bracket-box-7-1" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
                             <div class="mb-3 border-b border-gray-100 pb-2">
                                 <h3 class="font-bold text-gray-800 text-sm">Class 7-1 Top 4</h3>
@@ -52,6 +62,7 @@
                             <div id="bracket-list-7-1" class="space-y-1.5"></div>
                         </div>
 
+                        <!-- Box 7-2 -->
                         <div id="bracket-box-7-2" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
                             <div class="mb-3 border-b border-gray-100 pb-2">
                                 <h3 class="font-bold text-gray-800 text-sm">Class 7-2 Top 4</h3>
@@ -60,6 +71,7 @@
                         </div>
                     </div>
 
+                    <!-- MIDDLE STAGE: Class Representatives Finals Board -->
                     <div class="px-2">
                         <div id="finals-arena-card" class="bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-5 border-4 border-yellow-400/80 transform hover:scale-[1.01] transition-all">
                             <div class="text-center border-b border-blue-400/40 pb-3 mb-4">
@@ -68,19 +80,29 @@
                             </div>
                             
                             <div class="space-y-3">
+                                <!-- 7-1 Representative Slot -->
                                 <div id="rep-slot-7-1" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <!-- 7-2 Representative Slot -->
                                 <div id="rep-slot-7-2" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <!-- 7-3 Representative Slot -->
                                 <div id="rep-slot-7-3" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
+                                    <!-- Populated dynamically -->
+                                </div>
+                                <!-- 7-4 Representative Slot -->
                                 <div id="rep-slot-7-4" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
+                                    <!-- Populated dynamically -->
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- RIGHT SIDE: 7-3 and 7-4 Finisher Pools -->
                     <div class="flex flex-col space-y-12">
+                        <!-- Box 7-3 -->
                         <div id="bracket-box-7-3" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
                             <div class="mb-3 border-b border-gray-100 pb-2">
                                 <h3 class="font-bold text-gray-800 text-sm">Class 7-3 Top 4</h3>
@@ -88,6 +110,7 @@
                             <div id="bracket-list-7-3" class="space-y-1.5"></div>
                         </div>
 
+                        <!-- Box 7-4 -->
                         <div id="bracket-box-7-4" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
                             <div class="mb-3 border-b border-gray-100 pb-2">
                                 <h3 class="font-bold text-gray-800 text-sm">Class 7-4 Top 4</h3>
@@ -99,8 +122,10 @@
                 </div>
             </div>
 
+            <!-- Bottom Grid Row: Individual Floating Cards displaying Top 4 and Full Roster option -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 
+                <!-- Class 7-1 Floating Card -->
                 <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-1">
@@ -117,6 +142,7 @@
                     </button>
                 </div>
 
+                <!-- Class 7-2 Floating Card -->
                 <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-1">
@@ -133,6 +159,7 @@
                     </button>
                 </div>
 
+                <!-- Class 7-3 Floating Card -->
                 <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-1">
@@ -149,6 +176,7 @@
                     </button>
                 </div>
 
+                <!-- Class 7-4 Floating Card -->
                 <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex justify-between items-start mb-1">
@@ -168,6 +196,7 @@
             </div>
         </div>
 
+        <!-- ================= DYNAMIC CLASS PAGES ================= -->
         <div id="page-7-1" class="page-content hidden"></div>
         <div id="page-7-2" class="page-content hidden"></div>
         <div id="page-7-3" class="page-content hidden"></div>
@@ -175,6 +204,7 @@
 
     </main>
 
+    <!-- JavaScript Application Logic -->
     <script>
         const roundIds = ['7-1', '7-2', '7-3', '7-4'];
         const roundTitles = {
@@ -312,11 +342,12 @@
             if(pageId === 'home') setTimeout(drawBracketLines, 50);
         }
 
-        // Helper function to dynamically check name formatting and apply yellow text highlights
-        function formatNameHtml(nameStr) {
-            const cleanName = escapeHtml(nameStr);
-            if (nameStr && nameStr.includes('*')) {
-                return `<span class="bg-yellow-200 px-1 rounded text-gray-900 font-bold">${cleanName}</span>`;
+        // Helper function: strips the asterisk completely from UI display text and adds yellow background if matched
+        function formatNameHtml(nameStr, enableHighlight) {
+            if (!nameStr) return '';
+            const cleanName = escapeHtml(nameStr.replace(/\*/g, ''));
+            if (enableHighlight && nameStr.includes('*')) {
+                return `<span class="bg-yellow-200 px-1.5 py-0.5 rounded text-gray-900 font-bold">${cleanName}</span>`;
             }
             return cleanName;
         }
@@ -338,7 +369,7 @@
                 return `
                     <tr class="hover:bg-gray-50 transition">
                         <td class="py-3 px-6 font-medium ${rankStyle}">#${index + 1}</td>
-                        <td class="py-3 px-6 font-semibold text-gray-900">${formatNameHtml(racer.name)}</td>
+                        <td class="py-3 px-6 font-semibold text-gray-900">${formatNameHtml(racer.name, true)}</td>
                         <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t1.toFixed(3)}s</td>
                         <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t2.toFixed(3)}s</td>
                         <td class="py-3 px-6 font-mono text-right text-blue-600 font-bold">${racer.avg.toFixed(3)}s</td>
@@ -375,7 +406,7 @@
                                 <span class="w-5 h-5 flex items-center justify-center text-[10px] rounded-full shrink-0 ${badgeColor}">
                                     ${index + 1}
                                 </span>
-                                <span class="truncate text-xs ${nameStyle}">${formatNameHtml(racer.name)}</span>
+                                <span class="truncate text-xs ${nameStyle}">${formatNameHtml(racer.name, false)}</span>
                             </div>
                             <span class="font-mono text-xs text-blue-600 font-bold shrink-0 pl-1">${racer.avg.toFixed(3)}s</span>
                         </div>
@@ -407,7 +438,7 @@
                 const repSlot = document.getElementById(`rep-slot-${id}`);
                 const racers = db[id] || [];
 
-                // 1. Populate Bracket Pools
+                // 1. Populate Bracket Pools (Highlighting enabled, asterisks stripped out)
                 let listHtml = '';
                 for(let i = 0; i < 4; i++) {
                     if(racers[i]) {
@@ -416,7 +447,7 @@
                             <div class="flex items-center justify-between text-xs p-1.5 rounded hover:bg-gray-50">
                                 <div class="flex items-center gap-1.5 truncate">
                                     <span class="w-4 h-4 shrink-0 flex items-center justify-center font-bold text-[9px] rounded-full ${rankBadge}">${i+1}</span>
-                                    <span class="truncate font-medium text-gray-700">${formatNameHtml(racers[i].name)}</span>
+                                    <span class="truncate font-medium text-gray-700">${formatNameHtml(racers[i].name, true)}</span>
                                 </div>
                                 <span class="font-mono font-bold text-gray-500">${racers[i].avg.toFixed(3)}s</span>
                             </div>`;
@@ -433,14 +464,14 @@
                 }
                 if(listContainer) listContainer.innerHTML = listHtml;
 
-                // 2. Middle Championship Reps
+                // 2. Middle Championship Reps (Highlighting enabled, asterisks stripped out)
                 if(repSlot) {
                     const champ = champions[id];
                     if(champ) {
                         repSlot.innerHTML = `
                             <div class="truncate pr-2">
                                 <p class="text-[10px] text-blue-200 uppercase font-bold tracking-wider">Class ${id} Champion</p>
-                                <p class="font-bold text-sm text-white truncate">${formatNameHtml(champ.name)}</p>
+                                <p class="font-bold text-sm text-white truncate">${formatNameHtml(champ.name, true)}</p>
                             </div>
                             <span class="bg-yellow-400 text-blue-900 font-mono font-black text-xs px-2 py-1 rounded shadow-sm shrink-0">${champ.avg ? champ.avg.toFixed(3) + 's' : '--'}</span>
                         `;
