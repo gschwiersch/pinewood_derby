@@ -36,6 +36,111 @@
             
             <div id="dataStatusAlert" class="hidden"></div>
 
+            <div class="max-w-6xl mx-auto mb-8 bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+                <h2 class="text-center text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">🏆 Grand Championship Winners 🏆</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div id="podium-card-1st" class="bg-gradient-to-br from-amber-50 to-orange-100/50 border border-amber-200 rounded-xl p-3 flex items-center min-h-[64px]">
+                        <div class="flex items-center gap-3 truncate">
+                            <span class="text-2xl shrink-0">🥇</span>
+                            <div class="truncate">
+                                <p class="text-[10px] text-amber-700 font-bold uppercase tracking-wider">1st Place Overall</p>
+                                <p id="podium-name-1st" class="font-extrabold text-sm text-gray-900 truncate">Waiting for Result</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="podium-card-2nd" class="bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 rounded-xl p-3 flex items-center min-h-[64px]">
+                        <div class="flex items-center gap-3 truncate">
+                            <span class="text-2xl shrink-0">🥈</span>
+                            <div class="truncate">
+                                <p class="text-[10px] text-slate-600 font-bold uppercase tracking-wider">2nd Place Overall</p>
+                                <p id="podium-name-2nd" class="font-bold text-sm text-gray-900 truncate">Waiting for Result</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="podium-card-3rd" class="bg-gradient-to-br from-amber-50 to-amber-100/40 border border-amber-200/60 rounded-xl p-3 flex items-center min-h-[64px]">
+                        <div class="flex items-center gap-3 truncate">
+                            <span class="text-2xl shrink-0">🥉</span>
+                            <div class="truncate">
+                                <p class="text-[10px] text-amber-800 font-bold uppercase tracking-wider">3rd Place Overall</p>
+                                <p id="podium-name-3rd" class="font-bold text-sm text-gray-900 truncate">Waiting for Result</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="podium-card-4th" class="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200 rounded-xl p-3 flex items-center min-h-[64px]">
+                        <div class="flex items-center gap-3 truncate">
+                            <span class="text-2xl shrink-0">🏎️</span>
+                            <div class="truncate">
+                                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">4th Place Overall</p>
+                                <p id="podium-name-4th" class="font-semibold text-sm text-gray-700 truncate">Waiting for Result</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative max-w-6xl mx-auto bg-gray-50/50 rounded-2xl border border-gray-200/80 p-6 shadow-inner mb-12">
+                <h2 class="text-center text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">🏆 Championship Finals Bracket 🏆</h2>
+                
+                <svg class="absolute inset-0 w-full h-full hidden md:block bracket-svg" id="bracketLines" xmlns="http://www.w3.org/2000/svg">
+                    </svg>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center relative z-10">
+                    
+                    <div class="flex flex-col space-y-12">
+                        <div id="bracket-box-7-1" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-1 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-1" class="space-y-1.5"></div>
+                        </div>
+
+                        <div id="bracket-box-7-2" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-2 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-2" class="space-y-1.5"></div>
+                        </div>
+                    </div>
+
+                    <div class="px-2">
+                        <div id="finals-arena-card" class="bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-5 border-4 border-yellow-400/80 transform hover:scale-[1.01] transition-all">
+                            <div class="text-center border-b border-blue-400/40 pb-3 mb-4">
+                                <span class="text-[10px] uppercase font-black tracking-widest text-yellow-300">The Grand Arena</span>
+                                <h3 class="font-black text-lg tracking-wide">CHAMPIONSHIP FINALS</h3>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div id="rep-slot-7-1" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center min-h-[52px]">
+                                    </div>
+                                <div id="rep-slot-7-2" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center min-h-[52px]">
+                                    </div>
+                                <div id="rep-slot-7-3" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center min-h-[52px]">
+                                    </div>
+                                <div id="rep-slot-7-4" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center min-h-[52px]">
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col space-y-12">
+                        <div id="bracket-box-7-3" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-3 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-3" class="space-y-1.5"></div>
+                        </div>
+
+                        <div id="bracket-box-7-4" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
+                            <div class="mb-3 border-b border-gray-100 pb-2">
+                                <h3 class="font-bold text-gray-800 text-sm">Class 7-4 Top 4</h3>
+                            </div>
+                            <div id="bracket-list-7-4" class="space-y-1.5"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 
                 <div class="bg-white rounded-xl shadow-md border border-gray-100 p-5 flex flex-col justify-between">
@@ -103,69 +208,6 @@
                 </div>
 
             </div>
-
-            <div class="relative max-w-6xl mx-auto bg-gray-50/50 rounded-2xl border border-gray-200/80 p-6 shadow-inner">
-                <h2 class="text-center text-xs font-bold uppercase tracking-widest text-gray-400 mb-8">🏆 Championship Finals Bracket 🏆</h2>
-                
-                <svg class="absolute inset-0 w-full h-full hidden md:block bracket-svg" id="bracketLines" xmlns="http://www.w3.org/2000/svg">
-                    </svg>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center relative z-10">
-                    
-                    <div class="flex flex-col space-y-12">
-                        <div id="bracket-box-7-1" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
-                            <div class="mb-3 border-b border-gray-100 pb-2">
-                                <h3 class="font-bold text-gray-800 text-sm">Class 7-1 Top 4</h3>
-                            </div>
-                            <div id="bracket-list-7-1" class="space-y-1.5"></div>
-                        </div>
-
-                        <div id="bracket-box-7-2" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
-                            <div class="mb-3 border-b border-gray-100 pb-2">
-                                <h3 class="font-bold text-gray-800 text-sm">Class 7-2 Top 4</h3>
-                            </div>
-                            <div id="bracket-list-7-2" class="space-y-1.5"></div>
-                        </div>
-                    </div>
-
-                    <div class="px-2">
-                        <div id="finals-arena-card" class="bg-gradient-to-b from-blue-600 to-blue-700 text-white rounded-2xl shadow-xl p-5 border-4 border-yellow-400/80 transform hover:scale-[1.01] transition-all">
-                            <div class="text-center border-b border-blue-400/40 pb-3 mb-4">
-                                <span class="text-[10px] uppercase font-black tracking-widest text-yellow-300">The Grand Arena</span>
-                                <h3 class="font-black text-lg tracking-wide">CHAMPIONSHIP FINALS</h3>
-                            </div>
-                            
-                            <div class="space-y-3">
-                                <div id="rep-slot-7-1" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
-                                <div id="rep-slot-7-2" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
-                                <div id="rep-slot-7-3" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
-                                <div id="rep-slot-7-4" class="bg-blue-800/60 rounded-xl p-2.5 border border-blue-500/30 flex items-center justify-between min-h-[52px]">
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col space-y-12">
-                        <div id="bracket-box-7-3" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
-                            <div class="mb-3 border-b border-gray-100 pb-2">
-                                <h3 class="font-bold text-gray-800 text-sm">Class 7-3 Top 4</h3>
-                            </div>
-                            <div id="bracket-list-7-3" class="space-y-1.5"></div>
-                        </div>
-
-                        <div id="bracket-box-7-4" class="bg-white border-2 border-gray-200 rounded-xl shadow-md p-4 transition-all">
-                            <div class="mb-3 border-b border-gray-100 pb-2">
-                                <h3 class="font-bold text-gray-800 text-sm">Class 7-4 Top 4</h3>
-                            </div>
-                            <div id="bracket-list-7-4" class="space-y-1.5"></div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </div>
 
         <div id="page-7-1" class="page-content hidden"></div>
@@ -186,6 +228,7 @@
 
         let db = { '7-1': [], '7-2': [], '7-3': [], '7-4': [] };
         let champions = { '7-1': null, '7-2': null, '7-3': null, '7-4': null };
+        let podium = { '1st': null, '2nd': null, '3rd': null, '4th': null };
 
         window.addEventListener('DOMContentLoaded', () => {
             generateRoundHTML();
@@ -218,6 +261,7 @@
         function processCSVText(text) {
             let tempDb = { '7-1': [], '7-2': [], '7-3': [], '7-4': [] };
             let tempChamps = { '7-1': null, '7-2': null, '7-3': null, '7-4': null };
+            let tempPodium = { '1st': null, '2nd': null, '3rd': null, '4th': null };
             
             const lines = text.split(/\r?\n/).map(line => line.trim()).filter(line => line.length > 0);
             if (lines.length < 2) return;
@@ -261,6 +305,8 @@
                     tempChamps['7-3'] = { name, avg: average };
                 } else if (classIdLower === '7-4 champion') {
                     tempChamps['7-4'] = { name, avg: average };
+                } else if (['1st', '2nd', '3rd', '4th'].includes(classIdLower)) {
+                    tempPodium[classIdLower] = { name, avg: average };
                 }
             }
 
@@ -269,6 +315,7 @@
                 db[id] = tempDb[id];
             });
             champions = tempChamps;
+            podium = tempPodium;
 
             updateAllTables();
             setTimeout(drawBracketLines, 200);
@@ -312,6 +359,16 @@
             if(pageId === 'home') setTimeout(drawBracketLines, 50);
         }
 
+        // Helper function: strips the asterisk completely from UI display text and adds yellow background if matched
+        function formatNameHtml(nameStr, enableHighlight) {
+            if (!nameStr) return '';
+            const cleanName = escapeHtml(nameStr.replace(/\*/g, ''));
+            if (enableHighlight && nameStr.includes('*')) {
+                return `<span class="bg-yellow-200 px-1.5 py-0.5 rounded text-gray-900 font-bold">${cleanName}</span>`;
+            }
+            return cleanName;
+        }
+
         function updateRoundTable(roundId) {
             const tbody = document.getElementById(`tbody-${roundId}`);
             const badge = document.getElementById(`badge-${roundId}`);
@@ -329,7 +386,7 @@
                 return `
                     <tr class="hover:bg-gray-50 transition">
                         <td class="py-3 px-6 font-medium ${rankStyle}">#${index + 1}</td>
-                        <td class="py-3 px-6 font-semibold text-gray-900">${escapeHtml(racer.name)}</td>
+                        <td class="py-3 px-6 font-semibold text-gray-900">${formatNameHtml(racer.name, true)}</td>
                         <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t1.toFixed(3)}s</td>
                         <td class="py-3 px-6 font-mono text-center text-gray-500">${racer.t2.toFixed(3)}s</td>
                         <td class="py-3 px-6 font-mono text-right text-blue-600 font-bold">${racer.avg.toFixed(3)}s</td>
@@ -366,7 +423,7 @@
                                 <span class="w-5 h-5 flex items-center justify-center text-[10px] rounded-full shrink-0 ${badgeColor}">
                                     ${index + 1}
                                 </span>
-                                <span class="truncate text-xs ${nameStyle}">${escapeHtml(racer.name)}</span>
+                                <span class="truncate text-xs ${nameStyle}">${formatNameHtml(racer.name, false)}</span>
                             </div>
                             <span class="font-mono text-xs text-blue-600 font-bold shrink-0 pl-1">${racer.avg.toFixed(3)}s</span>
                         </div>
@@ -398,42 +455,39 @@
                 const repSlot = document.getElementById(`rep-slot-${id}`);
                 const racers = db[id] || [];
 
-                // 1. Populate Bracket Pools (All ranks share the identical gray rounded badge style layout uniformly)
+                // 1. Populate Bracket Pools (Highlighting removed, Timing boxes removed)
                 let listHtml = '';
                 for(let i = 0; i < 4; i++) {
                     if(racers[i]) {
                         let rankBadge = 'bg-gray-100 text-gray-600';
                         listHtml += `
-                            <div class="flex items-center justify-between text-xs p-1.5 rounded hover:bg-gray-50">
+                            <div class="flex items-center text-xs p-1.5 rounded hover:bg-gray-50">
                                 <div class="flex items-center gap-1.5 truncate">
                                     <span class="w-4 h-4 shrink-0 flex items-center justify-center font-bold text-[9px] rounded-full ${rankBadge}">${i+1}</span>
-                                    <span class="truncate font-medium text-gray-700">${escapeHtml(racers[i].name)}</span>
+                                    <span class="truncate font-medium text-gray-700">${formatNameHtml(racers[i].name, false)}</span>
                                 </div>
-                                <span class="font-mono font-bold text-gray-500">${racers[i].avg.toFixed(3)}s</span>
                             </div>`;
                     } else {
                         listHtml += `
-                            <div class="flex items-center justify-between text-xs p-1.5 text-gray-300 italic">
+                            <div class="flex items-center text-xs p-1.5 text-gray-300 italic">
                                 <div class="flex items-center gap-1.5">
                                     <span class="w-4 h-4 shrink-0 flex items-center justify-center font-bold text-[9px] rounded-full bg-gray-50">#</span>
                                     <span>Empty Slot</span>
                                 </div>
-                                <span>--</span>
                             </div>`;
                     }
                 }
                 if(listContainer) listContainer.innerHTML = listHtml;
 
-                // 2. Middle Championship Reps: Await strict CSV match configurations
+                // 2. Middle Championship Reps (Highlighting removed, Timing boxes removed)
                 if(repSlot) {
                     const champ = champions[id];
                     if(champ) {
                         repSlot.innerHTML = `
-                            <div class="truncate pr-2">
+                            <div class="truncate">
                                 <p class="text-[10px] text-blue-200 uppercase font-bold tracking-wider">Class ${id} Champion</p>
-                                <p class="font-bold text-sm text-white truncate">${escapeHtml(champ.name)}</p>
+                                <p class="font-bold text-sm text-white truncate">${formatNameHtml(champ.name, false)}</p>
                             </div>
-                            <span class="bg-yellow-400 text-blue-900 font-mono font-black text-xs px-2 py-1 rounded shadow-sm shrink-0">${champ.avg ? champ.avg.toFixed(3) + 's' : '--'}</span>
                         `;
                     } else {
                         repSlot.innerHTML = `
@@ -441,9 +495,23 @@
                                 <p class="text-[10px] text-blue-300 uppercase font-bold tracking-wider">Class ${id} Representative</p>
                                 <p class="font-medium text-sm text-blue-200/50 italic tracking-wide">Waiting for Result</p>
                             </div>
-                            <span class="bg-blue-900/40 text-blue-400 font-mono text-xs px-2 py-1 rounded shrink-0">--</span>
                         `;
                     }
+                }
+            });
+        }
+
+        function updatePodiumView() {
+            const places = ['1st', '2nd', '3rd', '4th'];
+            places.forEach(place => {
+                const nameEl = document.getElementById(`podium-name-${place}`);
+                if (!nameEl) return;
+
+                const data = podium[place];
+                if (data) {
+                    nameEl.innerHTML = formatNameHtml(data.name, true);
+                } else {
+                    nameEl.innerHTML = `<span class="text-gray-400 italic font-normal">Waiting for Result</span>`;
                 }
             });
         }
@@ -499,8 +567,10 @@
             roundIds.forEach(id => updateRoundTable(id));
             updateHomeLeaders();
             updateBracketView();
+            updatePodiumView();
         }
 
+        // Simple HTML Escaper
         function escapeHtml(str) {
             return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
